@@ -2,10 +2,15 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root {
     --primary-color: #F8A5BE;
+    --gen-ad: #F0B8CC;
+    --upper-box: #F4679D;
+    --lower-box: #C0005A;
+    --vip: #FF0066;
 }
 
 @font-face {
@@ -13,14 +18,16 @@
     src: url(/assets/fonts/Primetime.ttf);
 }
 
-h1 {font-family: Primetime;}
+/* h1 {font-family: Primetime;} */
 
 @font-face {
     font-family: 'Inter';
     src: url(/assets/fonts/InterVariable.ttf);
 }
 
-p {font-family: Inter;}
+p, h1 {font-family: Inter;}
+h1 {text-transform: uppercase; font-weight: 900; letter-spacing: 3px;}
+button {outline: none;}
 
 hero {
     display: flex;
@@ -61,7 +68,7 @@ hero {
     position:relative;
 }
 
-.ticket-info {
+.hero-ticket-info {
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(4px);
@@ -76,13 +83,13 @@ hero {
 }
 
 @media (max-width:1440px) {
-    .ticket-info {
+    .hero-ticket-info {
         top: 20px;
         right: 20px;
     }
 }
 
-.ticket-info-content {
+.hero-ticket-info-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,10 +166,122 @@ hero {
     }
 }
 
-
-
-/* nav {
+section {
+    padding: 4vh 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    gap: 20px;
+    height: 80vh;
     background-color: black;
-    color: var(--primary-color);
-    height: 10vh;
-} */
+}
+
+.ticket-pricing-banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/images/ticket-pricing-banner.jpg);
+    background-size: auto;
+    background-size: cover;
+    background-position: 0 720px;
+    height: 20vh;
+}
+
+.seat {
+    height: 80vh;
+    svg {
+        width: 100%;
+        height: auto;
+    } svg path {
+        stroke: transparent;
+    }
+}
+
+.ticket-price-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.ticket-price {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 12px;
+    font-family: Inter;
+    color: white;
+    background-color: #1F1F1F;
+    border-radius: 12px;
+    padding: 24px;
+    h2 {
+        font-size: 48px;
+    }
+}
+
+.ticket-name {
+    grid-column: span 3;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    p {line-height: 1.5;}
+}
+
+.advantage-container {
+    display: flex; flex-direction: column; gap: 8px; justify-content: center;
+}
+
+.advantage {
+    display: flex; gap: 8px; align-items: center;
+    p {font-size: 14px;}
+}
+
+.check-icon {
+    min-height: 32px; min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#gen-ad {
+    border-left: var(--gen-ad) 8px solid;
+    .ticket-name {color: var(--gen-ad);}
+    .advantage-container .advantage .check-icon {color: var(--gen-ad);}
+    .buy-ticket button {background-color: var(--gen-ad);}
+}
+#upper-box {
+    border-left: var(--upper-box) 8px solid;
+    .ticket-name {color: var(--upper-box);}
+    .advantage-container .advantage .check-icon {color: var(--upper-box);}
+    .buy-ticket button {background-color: var(--upper-box);}
+}
+#lower-box {
+    border-left: var(--lower-box) 8px solid;
+    .ticket-name {color: var(--lower-box);}
+    .advantage-container .advantage .check-icon {color: var(--lower-box);}
+    .buy-ticket button {background-color: var(--lower-box);}
+}
+#vip {
+    border-left: var(--vip) 8px solid;
+    .ticket-name {color: var(--vip);}
+    .advantage-container .advantage .check-icon {color: var(--vip);}
+    .buy-ticket button {background-color: var(--vip);}
+}
+
+.buy-ticket {
+    display: flex;
+    button {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        gap: 12px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: Inter;
+        color: white;
+    }
+}
