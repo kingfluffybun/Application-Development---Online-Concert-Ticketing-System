@@ -1,0 +1,168 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #F8A5BE;
+}
+
+@font-face {
+    font-family: Primetime;
+    src: url(/assets/fonts/Primetime.ttf);
+}
+
+h1 {font-family: Primetime;}
+
+@font-face {
+    font-family: 'Inter';
+    src: url(/assets/fonts/InterVariable.ttf);
+}
+
+p {font-family: Inter;}
+
+hero {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 4vh 8vh;
+    gap: 20px;
+    background-color: #f6c6d6;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f2adc0' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-banner-header {
+    display: flex;
+    gap: 12px;
+}
+
+.in-your-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 8px black solid;
+    background-color: var(--primary-color);
+    width: 400px;
+    h1 {font-size: 44px; font-family: Inter; font-weight: 900; letter-spacing: 3px;}
+}
+
+.hero-nav {
+    margin-left: auto;
+    padding: 12px;
+    display: flex;
+    gap: 32px;
+    p {font-size: 20px; font-weight: 600;}
+}
+
+.hero-banner-container {
+    width: 100%;
+    position:relative;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(4px);
+    position:absolute;
+    top: 60px;
+    right: 80px;
+    border: 4px solid #F8A5BE;
+    border-radius: 12px;
+    min-height: 360px;
+    width: 320px;
+    overflow: hidden;
+}
+
+@media (max-width:1440px) {
+    .ticket-info {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+.ticket-info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 12px;
+    background-color: white;
+    color: #333;
+    margin: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    h2 {font-family: Inter; font-size: 20px;}
+    p {font-size: 14px;}
+}
+
+.ticket-info-content .info p:first-child {
+    font-size: 12px; font-weight: 400;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    p {font-size: 18px; font-weight: 600;}
+}
+
+.player-container {
+    display: flex;
+    align-items: center;
+}
+
+.player-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 48px;
+    padding: 0 12px;
+    background-color: #f8a5becc;
+    color: white;
+    .icon {
+        height: 32px; width: 32px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {color: var(--primary-color); fill: var(--primary-color);}
+    }
+}
+
+.hero-banner {
+    object-fit: cover;
+    width: 100%;
+    height: 70vh;
+}
+
+.hero-banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        p {line-height: 1.75; font-size: 18px; font-weight: 550;}
+    }
+    button {
+        display: flex;
+        gap: 12px;
+        background-color: #f6c6d6;
+        padding: 20px 60px;
+        border: 4px solid black;
+        border-radius: 48px;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: Inter;
+    }
+}
+
+
+
+/* nav {
+    background-color: black;
+    color: var(--primary-color);
+    height: 10vh;
+} */
