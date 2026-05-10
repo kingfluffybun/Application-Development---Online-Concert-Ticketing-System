@@ -23,10 +23,18 @@
           <label for="login-identifier">Username or email</label>
         </div>
 
-        <div class="form-group">
-          <input id="login-password" name="password" type="password" placeholder=" " autocomplete="current-password">
-          <label for="login-password">Password</label>
-        </div>
+        <div class="form-group password-group">
+            <input id="login-password" name="password" type="password" placeholder=" " autocomplete="current-password">
+            <label for="login-password">Password</label>
+
+            <span class="toggle-password" data-target="login-password">
+                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+
+    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+
+                <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+            </span>
+            </div>
 
         <div class="link-row">
           <a href="recover.php">Forgot password?</a>
@@ -46,5 +54,41 @@
     </article>
   </div>
   </hero>
+
+  <script>
+document.querySelectorAll(".toggle-password").forEach(toggle => {
+  toggle.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+  });
+
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const inputId = toggle.getAttribute("data-target");
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    const eye = toggle.querySelector(".eye-icon");
+    const eyeOff = toggle.querySelector(".eye-off-icon");
+
+    const cursorPosition = input.selectionStart;
+    const selectionStart = input.selectionStart;
+    const selectionEnd = input.selectionEnd;
+
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+
+    eye.classList.toggle("hidden", isPassword);
+    eyeOff.classList.toggle("hidden", !isPassword);
+
+    setTimeout(() => {
+      input.setSelectionRange(selectionStart, selectionEnd);
+      input.focus();
+    }, 0);
+
+  });
+});
+</script>
 </body>
 </html>

@@ -29,15 +29,29 @@
           <label for="register-email">Email Address</label>
         </div>
 
-        <div class="form-group">
-          <input id="register-password" name="password" type="password" placeholder=" " autocomplete="new-password">
-          <label for="register-password">Password</label>
-        </div>
+        <div class="form-group password-group">
+  <input id="register-password" name="password" type="password" placeholder=" " autocomplete="new-password">
+  <label for="register-password">Password</label>
 
-        <div class="form-group">
-          <input id="register-confirm" name="confirm_password" type="password" placeholder=" " autocomplete="new-password">
-          <label for="register-confirm">Confirm Password</label>
-        </div>
+  <span class="toggle-password" data-target="register-password">
+    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+
+    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+  </span>
+</div>
+
+<div class="form-group password-group">
+  <input id="register-confirm" name="confirm_password" type="password" placeholder=" " autocomplete="new-password">
+  <label for="register-confirm">Confirm Password</label>
+
+  <span class="toggle-password" data-target="register-confirm">
+    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+
+    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+
+    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+  </span>
+</div>
 
         <div class="link-row">
           <span>Already have an account? <a href="login.php">Sign in</a></span>
@@ -51,5 +65,48 @@
       </div>
     </article>
   </div>
+
+  <script>
+document.querySelectorAll(".toggle-password").forEach(toggle => {
+  toggle.addEventListener("mousedown", (e) => {
+    // prevent input blur so cursor won't jump
+    e.preventDefault();
+  });
+
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const inputId = toggle.getAttribute("data-target");
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    const eye = toggle.querySelector(".eye-icon");
+    const eyeOff = toggle.querySelector(".eye-off-icon");
+
+    // ✅ SAVE CURSOR POSITION BEFORE ANY CHANGES
+    const cursorPosition = input.selectionStart;
+    const selectionStart = input.selectionStart;
+    const selectionEnd = input.selectionEnd;
+
+    // toggle password visibility
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+
+    eye.classList.toggle("hidden", isPassword);
+    eyeOff.classList.toggle("hidden", !isPassword);
+
+    // ✅ RESTORE CURSOR POSITION IMMEDIATELY AFTER TYPE CHANGE
+    // Use setTimeout to ensure DOM has updated
+    setTimeout(() => {
+      input.setSelectionRange(selectionStart, selectionEnd);
+      // Ensure input maintains focus for seamless typing
+      input.focus();
+    }, 0);
+
+    // keep natural typing flow (no focus reset)
+  });
+});
+</script>
 </body>
 </html>
