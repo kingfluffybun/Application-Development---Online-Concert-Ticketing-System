@@ -104,7 +104,7 @@ hero {
     p {font-size: 14px;}
 }
 
-.ticket-info-content .info p:first-child {
+.hero-ticket-info-content .info p:first-child {
     font-size: 12px; font-weight: 400;
 }
 
@@ -166,6 +166,10 @@ hero {
     }
 }
 
+hero, .ticket-pricing-section, .artist-section {
+    scroll-snap-type: y mandatory;
+}
+
 section {
     padding: 4vh 8vh;
     display: flex;
@@ -173,16 +177,28 @@ section {
     justify-content:center ;
     align-items: center;
     gap: 20px;
-    height: 80vh;
-    background-color: black;
 }
 
-.ticket-pricing-banner {
+.ticket-pricing-section {
+    height: 100vh;
+    background-color: black;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23959595' fill-opacity='0.22'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* .ticket-pricing-banner {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/images/ticket-pricing-banner.jpg);
     background-size: auto;
     background-size: cover;
     background-position: 0 720px;
-    height: 20vh;
+    height: 16vh;
+} */
+
+.ticket-pricing-header { 
+    grid-column: span 2; 
+    color: var(--primary-color);
+    border: 8px solid var(--primary-color);
+    padding: 16px;
+    margin-bottom: 24px;
 }
 
 .seat {
@@ -197,6 +213,7 @@ section {
 
 .ticket-price-container {
     display: grid;
+    height: 100%;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
@@ -204,7 +221,8 @@ section {
 .ticket-price {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    gap: 12px;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 12px;
     font-family: Inter;
     color: white;
     background-color: #1F1F1F;
@@ -222,7 +240,8 @@ section {
 .ticket-info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+    justify-content: center;
     p {line-height: 1.5;}
 }
 
@@ -231,12 +250,12 @@ section {
 }
 
 .advantage {
-    display: flex; gap: 8px; align-items: center;
+    display: flex; gap: 16px; align-items: center;
     p {font-size: 14px;}
 }
 
 .check-icon {
-    min-height: 32px; min-width: 32px;
+    min-height: 28px; min-width: 28px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -245,25 +264,25 @@ section {
 }
 
 #gen-ad {
-    border-left: var(--gen-ad) 8px solid;
+    border-top: var(--gen-ad) 8px solid;
     .ticket-name {color: var(--gen-ad);}
     .advantage-container .advantage .check-icon {color: var(--gen-ad);}
     .buy-ticket button {background-color: var(--gen-ad);}
 }
 #upper-box {
-    border-left: var(--upper-box) 8px solid;
+    border-top: var(--upper-box) 8px solid;
     .ticket-name {color: var(--upper-box);}
     .advantage-container .advantage .check-icon {color: var(--upper-box);}
     .buy-ticket button {background-color: var(--upper-box);}
 }
 #lower-box {
-    border-left: var(--lower-box) 8px solid;
+    border-top: var(--lower-box) 8px solid;
     .ticket-name {color: var(--lower-box);}
     .advantage-container .advantage .check-icon {color: var(--lower-box);}
     .buy-ticket button {background-color: var(--lower-box);}
 }
 #vip {
-    border-left: var(--vip) 8px solid;
+    border-top: var(--vip) 8px solid;
     .ticket-name {color: var(--vip);}
     .advantage-container .advantage .check-icon {color: var(--vip);}
     .buy-ticket button {background-color: var(--vip);}
@@ -283,5 +302,42 @@ section {
         text-transform: uppercase;
         font-family: Inter;
         color: white;
+        margin-top: 12px;
+        max-height: fit-content;
+    }
+}
+
+.artist-section {
+    position:relative;
+    height: 100vh;
+}
+
+.artist-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url(/assets/images/hero-banner-bg.jpg);
+  background-size: cover;
+  filter: blur(4px);
+  z-index: -1; /* Places the image behind the content */
+}
+
+.artist-container {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: 20px;
+    div {
+        width: auto; height: 600px;
+        img {
+            object-position: 0 -72px;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: all ease 250ms;
+            cursor: pointer;
+        } 
+        img:hover {
+            transform: scale(1.025);
+        }
     }
 }
