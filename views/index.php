@@ -14,10 +14,11 @@
                 <h1>IN YOUR AREA</h1>
             </div>
             <div class="hero-nav">
-                <a href="#ticket"><p>Tickets</p></a>
-                <a ><p>Schedule</p></a>
-                <a href="#artist"><p>Artists</p></a>
-                <a><p>FAQ</p></a>
+                <a href="#ticket" class="a-text"><p>Tickets</p></a>
+                <!-- <a class="a-text"><p>Schedule</p></a> -->
+                <a href="#artist" class="a-text"><p>Artists</p></a>
+                <a class="a-text"><p>FAQ</p></a>
+                <a><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg></a>
             </div>
         </div>
         <div class="hero-banner-container">
@@ -59,7 +60,7 @@
                 <p>Experience BLACKPINK live in Quezon City — </p>
                 <p>the most iconic K-pop girl group takes the stage at Smart Araneta Coliseum</p>
             </div>
-            <button type="button"><p>Get Tickets Now</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+            <a href="seats.php"><p>Get Tickets Now</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
         </div>
     </hero>
     <!-- <div class="ticket-pricing-banner"></div> -->
@@ -91,7 +92,7 @@
                     </div>
                 </div>
                 <div class="buy-ticket" style="grid-column: span 2;">
-                    <button type="button"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                 </div>
             </div>
             <div class="ticket-price" id="upper-box">
@@ -119,7 +120,7 @@
                     </div>
                 </div>
                 <div class="buy-ticket" style="grid-column: span 2;">
-                    <button type="button"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                 </div>
             </div>
             <div class="ticket-price" id="lower-box">
@@ -147,7 +148,7 @@
                     </div>
                 </div>
                 <div class="buy-ticket" style="grid-column: span 2;">
-                    <button type="button"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                 </div>
             </div>
             <div class="ticket-price" id="vip">
@@ -175,7 +176,7 @@
                     </div>
                 </div>
                 <div class="buy-ticket" style="grid-column: span 2;">
-                    <button type="button"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                 </div>
             </div>
         </div>

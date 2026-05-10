@@ -21,7 +21,7 @@ const zonePrices = {
   'Gen Adm': 1500,
 };
 
-const dimmedOpacity = '0.35';
+const dimmedOpacity = '0.5';
 let selectedPath = null;
 let selectedZone = null;
 let selectedSection = null;
@@ -37,6 +37,8 @@ const priceDisplay = document.getElementById('price');
 const quantityDisplay = document.getElementById('quantity');
 const totalPriceDisplay = document.getElementById('total-price');
 const zonePillElement = document.getElementById('zone-pill');
+const ticketFormSection = document.querySelector('.ticket-form');
+const paymentSection = document.querySelector('.payment-form');
 
 // Update summary display
 const updateSummary = () => {
@@ -176,4 +178,19 @@ seatContainer.querySelectorAll('svg path').forEach(path => {
     selectedSection = getSectionFromPath(path);
     updateSummary();
   });
+});
+
+const proceedButton = document.getElementById('proceed-btn');
+
+const showSection = (showSectionElement, hideSectionElement) => {
+  showSectionElement.style.display = 'flex';
+  hideSectionElement.style.display = 'none';
+};
+
+proceedButton.addEventListener('click', () => {
+  if (!selectedZone || !selectedSection) {
+    return;
+  }
+
+  showSection(paymentSection, ticketFormSection);
 });

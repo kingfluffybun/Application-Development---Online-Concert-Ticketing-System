@@ -34,6 +34,7 @@ input::-webkit-inner-spin-button {
 p, h1, h2 {font-family: Inter;}
 h1 {text-transform: uppercase; font-weight: 900; letter-spacing: 3px;}
 button {outline: none;}
+a {text-decoration: none;}
 
 p, a, h1, h2 {user-select: none;}
 
@@ -69,6 +70,23 @@ hero {
     display: flex;
     gap: 32px;
     p {font-size: 20px; font-weight: 600;}
+}
+
+.hero-nav .a-text {position: relative; height: fit-content; color: black;}
+
+.hero-nav .a-text::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    right: 0;
+    height: 4px;
+    width: 0;
+    background-color: black;
+    transition: 250ms all ease;
+}
+
+.hero-nav .a-text:hover::after {
+    width: 100%;
 }
 
 .hero-banner-container {
@@ -160,17 +178,22 @@ hero {
     div {
         p {line-height: 1.75; font-size: 18px; font-weight: 550;}
     }
-    button {
+    a {
         display: flex;
         gap: 12px;
         background-color: #f6c6d6;
         padding: 20px 60px;
+        color: black;
         border: 4px solid black;
         border-radius: 48px;
         font-size: 24px;
         font-weight: 700;
         text-transform: uppercase;
         font-family: Inter;
+        transition: all ease 250ms;
+    }
+    a:hover {
+        transform: scale(1.025);
     }
 }
 
@@ -178,15 +201,17 @@ section {
     padding: 8vh;
     display: flex;
     flex-direction: column;
-    justify-content:center ;
-    align-items: center;
     gap: 20px;
 }
 
-.ticket-pricing-section, .ticket-form {
+.ticket-pricing-section, .ticket-form, .payment-form {
     height: 100vh;
     background-color: black;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23959595' fill-opacity='0.22'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.ticket-pricing-section {
+    align-items: center;
 }
 
 /* .ticket-pricing-banner {
@@ -202,10 +227,14 @@ section {
     margin-bottom: 24px;
 }
 
-.ticket-pricing-header, .select-seat-header {
-    color: var(--primary-color);
+.ticket-pricing-header, .select-seat-header, .payment-header {
+    color: var(--primary-color);    
     border: 8px solid var(--primary-color);
     padding: 16px;
+}
+
+.payment-form {
+    width: 100%;
 }
 
 .ticket-price-container {
@@ -265,30 +294,30 @@ section {
     border-top: var(--gen-ad) 8px solid;
     .ticket-name {color: var(--gen-ad);}
     .advantage-container .advantage .check-icon {color: var(--gen-ad);}
-    .buy-ticket button {background-color: var(--gen-ad);}
+    .buy-ticket a {background-color: var(--gen-ad);}
 }
 #upper-box {
     border-top: var(--upper-box) 8px solid;
     .ticket-name {color: var(--upper-box);}
     .advantage-container .advantage .check-icon {color: var(--upper-box);}
-    .buy-ticket button {background-color: var(--upper-box);}
+    .buy-ticket a {background-color: var(--upper-box);}
 }
 #lower-box {
     border-top: var(--lower-box) 8px solid;
     .ticket-name {color: var(--lower-box);}
     .advantage-container .advantage .check-icon {color: var(--lower-box);}
-    .buy-ticket button {background-color: var(--lower-box);}
+    .buy-ticket a {background-color: var(--lower-box);}
 }
 #vip {
     border-top: var(--vip) 8px solid;
     .ticket-name {color: var(--vip);}
     .advantage-container .advantage .check-icon {color: var(--vip);}
-    .buy-ticket button {background-color: var(--vip);}
+    .buy-ticket a {background-color: var(--vip);}
 }
 
 .buy-ticket {
     display: flex;
-    button {
+    a {
         display: flex;
         align-items: center;
         flex-grow: 1;
@@ -302,10 +331,14 @@ section {
         color: white;
         margin-top: 12px;
         max-height: fit-content;
+        transition: all 250ms ease;
+    } a:hover {
+        transform: scale(1.025);
     }
 }
 
 .artist-section {
+    justify-content: center;
     position:relative;
     height: 100vh;
 }
@@ -375,6 +408,8 @@ section {
     }  svg path:hover {
         filter: brightness(1.5);
         /* opacity: 0.85; */
+    } svg path[fill="white"] {
+        pointer-events: none;
     }
     #Stage, #STAGE {pointer-events: none;}
 }
@@ -479,7 +514,7 @@ section {
     content: "";
     background-color: rgba(255, 255, 255, 0.5);;
     height: 2px;
-    width: 36px;
+    width: 56px;
 }
 
 .step-number {
@@ -492,9 +527,8 @@ section {
     justify-content: center;
 }
 
-.step.active {
-    color: var(--primary-color);
-}
+.step.active {color: var(--primary-color);}
+.step.active::before {background-color: var(--primary-color);}
 
 .step.active .step-number {
     background-color: var(--primary-color);
@@ -510,4 +544,6 @@ section {
     background-color: var(--vip);
     cursor: pointer;
     border-radius: 8px;
+    font-size: 12px;
+
 }
