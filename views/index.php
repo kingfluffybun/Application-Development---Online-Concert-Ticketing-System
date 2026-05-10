@@ -66,117 +66,123 @@
     <!-- <div class="ticket-pricing-banner"></div> -->
     <section class="ticket-pricing-section" id="ticket">
         <h1 class="ticket-pricing-header">Ticket Pricing</h1>
-        <div class="ticket-price-container">
-            <div class="ticket-price" id="gen-ad">
-                <p class="ticket-name">Gen Admission</p>
-                <div class="ticket-info">     
-                    <h2>₱1,500</h2>
-                    <p>The ultimate fan experience. Standing room on the outermost sections, feel the energy of the crowd and sing along with thousands of BLINKs.</p>
-                </div>
-                <div class="advantage-container">
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Most affordable ticket</p>
+        <div style="display: flex; height: 72vh; flex-direction: column;">
+            <div class="ticket-price-container">
+                <div class="ticket-price" id="gen-ad">
+                    
+                    <div class="ticket-info">    
+                        <p class="ticket-name">Gen Admission</p> 
+                        <h2>₱1,500</h2>
+                        <p>The ultimate fan experience. Standing room on the outermost sections, feel the energy of the crowd and sing along with thousands of BLINKs.</p>
                     </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Large capacity, more chances to get in</p>
+                    <div class="advantage-container">
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Most affordable ticket</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Large capacity, more chances to get in</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Full view of the stage and light show</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Best crowd atmosphere</p>
+                        </div>
                     </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Full view of the stage and light show</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Best crowd atmosphere</p>
-                    </div>
-                </div>
-                <div class="buy-ticket" style="grid-column: span 2;">
-                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
-                </div>
-            </div>
-            <div class="ticket-price" id="upper-box">
-                <p class="ticket-name">Upper Box</p>
-                <div class="ticket-info">     
-                    <h2>₱3,500</h2>
-                    <p>Elevated seating with a wide panoramic view of the entire stage. Perfect for fans who want a complete picture of the full production and performance.</p>
-                </div>
-                <div class="advantage-container">
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Guaranteed seat</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Bird's eye view of the full stage setup</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Great view of choreography and formations</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Less crowded, more comfortable</p>
+                    <div class="buy-ticket">
+                        <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                     </div>
                 </div>
-                <div class="buy-ticket" style="grid-column: span 2;">
-                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
-                </div>
-            </div>
-            <div class="ticket-price" id="lower-box">
-                <p class="ticket-name">Lower Box</p>
-                <div class="ticket-info">     
-                    <h2>₱5,500</h2>
-                    <p>Get closer to the action with premium seated sections just above the floor. A near-perfect balance of proximity and comfort.</p>
-                </div>
-                <div class="advantage-container">
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Guaranteed seat</p>
+                <div class="ticket-price" id="upper-box">
+                    
+                    <div class="ticket-info">     
+                        <p class="ticket-name">Upper Box</p>
+                        <h2>₱3,500</h2>
+                        <p>Elevated seating with a wide panoramic view of the entire stage. Perfect for fans who want a complete picture of the full production and performance.</p>
                     </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Close enough to see facial expressions</p>
+                    <div class="advantage-container">
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Guaranteed seat</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Bird's eye view of the full stage setup</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Great view of choreography and formations</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Less crowded, more comfortable</p>
+                        </div>
                     </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Better sightlines than Upper Box</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Access to lower box lounges</p>
-                    </div>
-                </div>
-                <div class="buy-ticket" style="grid-column: span 2;">
-                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
-                </div>
-            </div>
-            <div class="ticket-price" id="vip">
-                <p class="ticket-name">VIP</p>
-                <div class="ticket-info">     
-                    <h2>₱8,500</h2>
-                    <p>The closest you can get to BLACKPINK. Floor-level sections right in front of the stage — an intimate, high-energy experience you'll never forget.</p>
-                </div>
-                <div class="advantage-container">
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Closest proximity to the stage</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Priority entry</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Exclusive VIP lanyard & ticket stub</p>
-                    </div>
-                    <div class="advantage">
-                        <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
-                        <p>Best position for hi-touch moments and fan interaction</p>
+                    <div class="buy-ticket">
+                        <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
                     </div>
                 </div>
-                <div class="buy-ticket" style="grid-column: span 2;">
-                    <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
+                <div class="ticket-price" id="lower-box">
+                    
+                    <div class="ticket-info">     
+                        <p class="ticket-name">Lower Box</p>
+                        <h2>₱5,500</h2>
+                        <p>Get closer to the action with premium seated sections just above the floor. A near-perfect balance of proximity and comfort.</p>
+                    </div>
+                    <div class="advantage-container">
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Guaranteed seat</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Close enough to see facial expressions</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Better sightlines than Upper Box</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Access to lower box lounges</p>
+                        </div>
+                    </div>
+                    <div class="buy-ticket">
+                        <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
+                    </div>
+                </div>
+                <div class="ticket-price" id="vip">
+                    
+                    <div class="ticket-info">     
+                        <p class="ticket-name">VIP</p>
+                        <h2>₱8,500</h2>
+                        <p>The closest you can get to BLACKPINK. Floor-level sections right in front of the stage — an intimate, high-energy experience you'll never forget.</p>
+                    </div>
+                    <div class="advantage-container">
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Closest proximity to the stage</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Priority entry</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Exclusive VIP lanyard & ticket stub</p>
+                        </div>
+                        <div class="advantage">
+                            <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></div>
+                            <p>Best position for hi-touch moments and fan interaction</p>
+                        </div>
+                    </div>
+                    <div class="buy-ticket">
+                        <a href="seats.php"><p>BUY TICKETS</p><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></a>
+                    </div>
                 </div>
             </div>
         </div>

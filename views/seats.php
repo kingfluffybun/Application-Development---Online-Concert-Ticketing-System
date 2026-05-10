@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <section class="ticket-form">
+    <section class="ticket-form-section">
+    <a href="index.php">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
+        <p>Back to Home</p>
+    </a>
+    <form class="ticket-form" action="/views/payment.php" method="post">
         <div style="grid-column: span 2; display: flex; justify-content: space-between; align-items: flex-start;">
             <h1 class="select-seat-header">Select Seat Zone</h1>
             <div style="display: flex; gap: 8px; align-items: center; padding: 12px;">
@@ -303,35 +308,17 @@
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <p style="color: rgba(255, 255, 255, 0.5);">Max 5 Tickets</p>
-                    <div style="display: flex; gap: 8px; align-items: center;">
+                    <div style="display: flex; gap: 8px; align-items: center; user-select: none;">
                         <div class="quantity-btn" id="decrease-btn" style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></div>
                         <input type="number" id="ticket-quantity" value="1" min="1" max="5">
                         <div class="quantity-btn" id="increase-btn" style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></div>
                     </div>
                 </div>
             </div>
-            <div class="proceed" id="proceed-btn"><h1>Proceed</h1></div>
+            <button type="submit" class="proceed" id="proceed-btn"><h1>Proceed</h1></button>
         </div>
+    </form>
     </section>
-    <section class="payment-form" style="display: none;">
-        <div style="grid-column: span 2; display: flex; justify-content: space-between; align-items: flex-start;">
-            <h1 class="payment-header">Payment</h1>
-            <div style="display: flex; gap: 8px; align-items: center; padding: 12px;">
-                <div class="step active">
-                    <div class="step-number"><p>1</p></div>
-                    <p>Select Seat</p>
-                </div>
-                <div class="step active">
-                    <div class="step-number"><p>2</p></div>
-                    <p>Payment</p>
-                </div>
-                <div class="step">
-                    <div class="step-number"><p>3</p></div>
-                    <p>Thank You!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<script src="../util/script.js"></script>
+<script src="../util/seat.js"></script>
 </body>
 </html>
