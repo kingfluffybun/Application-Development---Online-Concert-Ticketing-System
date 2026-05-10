@@ -41,20 +41,23 @@
                     <p>2 tickets · August 15, 2026</p>
                 </div>
             </div>
-            <div style="display: flex; gap: 8px; flex-direction: column;">
-                <h2>Transaction Number</h2>
-                <p>Enter the 8-digit reference number from your payment center receipt.</p>
-            </div>
-            <div class="transaction-number-container">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <div class="transaction-number-input-separator"></div>
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
-                <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+            <div style="padding-bottom: 24px;">
+                <div style="display: flex; gap: 8px; flex-direction: column;">
+                    <h2>Transaction Number</h2>
+                    <p>Enter the 8-digit reference number from your payment center receipt.</p>
+                </div>
+                <br>
+                <div class="transaction-number-container">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <div class="transaction-number-input-separator"></div>
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                    <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
+                </div>
             </div>
             <h2>How to Pay?</h2>
             <div class="how-to-pay">
@@ -68,7 +71,7 @@
                 </div>
                 <div class="pay-step-container">
                     <div class="pay-step-icon"><h2>3</h2></div>
-                    <p>Come back to this page and enter your 8-digit transaction number in the field below. Click Confirm Payment to complete your ticket purchase.</p>
+                    <p>Come back to this page and enter your 8-digit transaction number in the field above. Click Confirm Payment to complete your ticket purchase.</p>
                 </div>
             </div>
         </div>
