@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
+<?php
+session_start();
+include '../db/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
+    $user_id = (int)$_POST['user_id'];
+    $zone = $_POST['zone'] ?? '';
+    $section = $_POST['section'] ?? '';
+    $quantity = (int)($_POST['quantity'] ?? 0);
+    $transac_no = $_POST['transac_no'] ?? '';
+    
+    if ($zone && $section && $quantity && $transac_no) {
+        $zonePrices = [
+            'VIP' => 8500,
+            'Lower Box' => 5500,
+            'Upper Box' => 3500,
+            'Gen Adm' => 1500,
+        ];
+        $price = $zonePrices[$zone] * $quantity;
+
+        $stmt = $conn->prepare("INSERT INTO tickets (user_id, zone, section, quantity, price, transac_no) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issids", $user_id, $zone, $section, $quantity, $price, $transac_no);
+        if ($stmt->execute()) {
+        } else {
+            echo "Error inserting ticket: " . $stmt->error;
+        }
+    }
+}
+?>
     <section class="ticket-form-section">
     <a href="index.php">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>

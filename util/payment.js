@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const filled = Array.from(txnInputs).every(i => i.value !== '');
         const btn = document.getElementById('confirm-btn');
         if (btn) btn.disabled = !filled;
+        if (filled) {
+            const transacNo = Array.from(txnInputs).map(i => i.value).join('');
+            document.getElementById('hidden-transac_no').value = transacNo;
+        }
     };
 
     txnInputs.forEach((input, i) => {

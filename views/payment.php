@@ -7,12 +7,37 @@
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login-register/login.php");
+    exit();
+}
+
+$zone = $_POST['zone'] ?? '';
+$section = $_POST['section'] ?? '';
+$quantity = (int)($_POST['quantity'] ?? 1);
+$user_id = $_SESSION['user_id'] ?? '';
+
+$zonePrices = [
+    'VIP' => 8500,
+    'Lower Box' => 5500,
+    'Upper Box' => 3500,
+    'Gen Adm' => 1500,
+];
+$basePrice = $zonePrices[$zone] ?? 0;
+$totalPrice = $basePrice * $quantity;
+?>
     <section class="ticket-form-section">
-    <a href="index.php">
+    <a href="../index.php">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
         <p>Back to Home</p>
     </a>
     <form class="ticket-form" action="thankyou.php" method="post">
+        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+        <input type="hidden" name="zone" value="<?php echo htmlspecialchars($zone); ?>">
+        <input type="hidden" name="section" value="<?php echo htmlspecialchars($section); ?>">
+        <input type="hidden" name="quantity" value="<?php echo htmlspecialchars($quantity); ?>">
         <div style="grid-column: span 2; display: flex; justify-content: space-between; align-items: flex-start;">
             <h1 class="select-seat-header">Payment</h1>
             <div style="display: flex; gap: 8px; align-items: center; padding: 12px;">
@@ -34,11 +59,11 @@
             <div class="payment-header">
                 <div>
                     <p>Total Amount To Pay</p>
-                    <h2>₱7,000</h2>
+                    <h2>₱<?php echo number_format($totalPrice); ?></h2>
                 </div>
                 <div style="text-align: right;">
-                    <p>Upper Box · Section 423</p>
-                    <p>2 tickets · August 15, 2026</p>
+                    <p><?php echo htmlspecialchars($zone); ?> · Section <?php echo htmlspecialchars($section); ?></p>
+                    <p><?php echo htmlspecialchars($quantity); ?> tickets · August 15, 2026</p>
                 </div>
             </div>
             <div style="padding-bottom: 24px;">
@@ -58,6 +83,7 @@
                     <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
                     <input type="text" maxlength="1" inputmode="numeric" class="transaction-number-input">
                 </div>
+                <input type="hidden" name="transac_no" id="hidden-transac_no">
             </div>
             <h2>How to Pay?</h2>
             <div class="how-to-pay">
@@ -81,25 +107,25 @@
                 <div class="order-summary-info">
                     <div>
                         <p>Zone</p>
-                        <div class="zone-pill" id="zone-pill" style="display: none;"><p id="selected-zone"></p></div>
+                        <div class="zone-pill" id="zone-pill" style="display: <?php echo $zone ? 'block' : 'none'; ?>;"><p><?php echo htmlspecialchars($zone); ?></p></div>
                     </div>
                     <div>
                         <p>Section</p>
-                        <p id="selected-section"></p>
+                        <p><?php echo htmlspecialchars($section); ?></p>
                     </div>
                     <div>
                         <p>Price</p>
-                        <p id="price"></p>
+                        <p>₱<?php echo number_format($basePrice); ?></p>
                     </div>
                     <div>
                         <p>Quantity</p>
-                        <p id="quantity"></p>
+                        <p><?php echo htmlspecialchars($quantity); ?></p>
                     </div>
                 </div>
                 <!-- <hr style="margin: 12px 0;"> -->
                 <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; padding-top: 12px;" >
                     <h2>Total</h2>
-                    <h2 id="total-price" style="font-size: 48px; color: var(--vip);"></h2>
+                    <h2 id="total-price" style="font-size: 48px;">₱<?php echo number_format($totalPrice); ?></h2>
                 </div>
             </div>
             <div class="order-summary">
@@ -128,7 +154,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="proceed"><h1>Confirm Payment</h1></button>
+            <button type="submit" class="proceed" id="confirm-btn"><h1>Confirm Payment</h1></button>
         </div>
     </form>
     </section>

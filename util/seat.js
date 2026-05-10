@@ -192,5 +192,9 @@ proceedButton.addEventListener('click', () => {
     return;
   }
 
+  document.getElementById('hidden-zone').value = selectedZone;
+  document.getElementById('hidden-section').value = selectedSection;
+  document.getElementById('hidden-quantity').value = quantity;
+
   showSection(paymentSection, ticketFormSection);
 });

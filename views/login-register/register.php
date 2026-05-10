@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="/styles/login-register.css">
 </head>
 <body>
+<?php
+session_start();
+include '../../db/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $stmt = $conn->prepare("INSERT INTO users (user_name, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $email, $password);
+    if ($stmt->execute()) {
+        header("Location: login.php");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+}
+?>
+  <hero>
   <hero>
     <div class="auth-shell">
     <article class="auth-card">
