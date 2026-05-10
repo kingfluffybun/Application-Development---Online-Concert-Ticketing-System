@@ -34,7 +34,7 @@ hero {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    padding: 4vh 8vh;
+    padding: 8vh;
     gap: 20px;
     background-color: #f6c6d6;
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f2adc0' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
@@ -166,12 +166,8 @@ hero {
     }
 }
 
-hero, .ticket-pricing-section, .artist-section {
-    scroll-snap-type: y mandatory;
-}
-
 section {
-    padding: 4vh 8vh;
+    padding: 8vh;
     display: flex;
     flex-direction: column;
     justify-content:center ;
@@ -179,7 +175,7 @@ section {
     gap: 20px;
 }
 
-.ticket-pricing-section {
+.ticket-pricing-section, .ticket-form {
     height: 100vh;
     background-color: black;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23959595' fill-opacity='0.22'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -195,20 +191,13 @@ section {
 
 .ticket-pricing-header { 
     grid-column: span 2; 
-    color: var(--primary-color);
-    border: 8px solid var(--primary-color);
-    padding: 16px;
     margin-bottom: 24px;
 }
 
-.seat {
-    height: 80vh;
-    svg {
-        width: 100%;
-        height: auto;
-    } svg path {
-        stroke: transparent;
-    }
+.ticket-pricing-header, .select-seat-header {
+    color: var(--primary-color);
+    border: 8px solid var(--primary-color);
+    padding: 16px;
 }
 
 .ticket-price-container {
@@ -226,6 +215,7 @@ section {
     font-family: Inter;
     color: white;
     background-color: #1F1F1F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 24px;
     h2 {
@@ -330,7 +320,7 @@ section {
     div {
         width: auto; height: 600px;
         img {
-            object-position: 0 -72px;
+            /* object-position: 0 -72px; */
             width: 100%; height: 100%;
             object-fit: cover;
             transition: all ease 250ms;
@@ -340,4 +330,61 @@ section {
             transform: scale(1.025);
         }
     }
+}
+
+/* seats.html */
+
+.ticket-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.select-seat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 12px;
+}
+
+.seat {
+    color: white;
+    position: relative;
+    background-color: #1F1F1F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    } svg path {
+        stroke: transparent;
+    }
+    #Stage, #STAGE {pointer-events: none;}
+}
+
+.legend {
+    position: absolute;
+    top: 20px; left: 20px;
+    display: flex;
+    gap: 12px;
+    div {
+        display: flex; gap: 6px;
+        align-items: center;
+        p {font-size: 14px;}
+        .legend-color {
+            width: 14px; height: 14px;
+            border-radius: 4px;
+        }
+    }
+    
+}
+
+.select-num-tickets {
+    background-color: #1F1F1F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    color: white;
 }
