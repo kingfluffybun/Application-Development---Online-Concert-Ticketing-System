@@ -47,6 +47,18 @@ hero {
     gap: 20px;
     background-color: #f6c6d6;
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f2adc0' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    animation: slide 2s linear infinite;
+}
+
+@keyframes slide {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        /* This should match the width/height in your SVG (40px) 
+           to ensure a seamless loop */
+        background-position: 40px 40px; 
+    }
 }
 
 .hero-banner-header {
@@ -220,6 +232,7 @@ section {
 
 .ticket-pricing-section {
     align-items: center;
+    justify-content: center;
 }
 
 /* .ticket-pricing-banner {
@@ -311,25 +324,25 @@ section {
 #gen-ad {
     border-top: var(--gen-ad) 8px solid;
     .ticket-name {color: var(--gen-ad);}
-    .advantage-container .advantage .check-icon {color: var(--gen-ad);}
+    .advantage-container .advantage .check-icon {background-color: var(--gen-ad);}
     .buy-ticket a {background-color: var(--gen-ad);}
 }
 #upper-box {
     border-top: var(--upper-box) 8px solid;
     .ticket-name {color: var(--upper-box);}
-    .advantage-container .advantage .check-icon {color: var(--upper-box);}
+    .advantage-container .advantage .check-icon {background-color: var(--upper-box);}
     .buy-ticket a {background-color: var(--upper-box);}
 }
 #lower-box {
     border-top: var(--lower-box) 8px solid;
     .ticket-name {color: var(--lower-box);}
-    .advantage-container .advantage .check-icon {color: var(--lower-box);}
+    .advantage-container .advantage .check-icon {background-color: var(--lower-box);}
     .buy-ticket a {background-color: var(--lower-box);}
 }
 #vip {
     border-top: var(--vip) 8px solid;
     .ticket-name {color: var(--vip);}
-    .advantage-container .advantage .check-icon {color: var(--vip);}
+    .advantage-container .advantage .check-icon {background-color: var(--vip);}
     .buy-ticket a {background-color: var(--vip);}
 }
 
