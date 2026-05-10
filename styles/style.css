@@ -483,6 +483,7 @@ section {
     height: 56px; width: 64px;
     border-radius: 12px;
     font-size: 24px;
+    font-weight: 600;
 }
 
 .transaction-number-input-separator {
@@ -637,6 +638,7 @@ section {
 .step.active .step-number {
     background-color: var(--primary-color);
     color: black;
+    border: none;
 }
 
 .proceed {
