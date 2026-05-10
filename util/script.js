@@ -1,23 +1,108 @@
+const seatContainer = document.querySelector('.seat');
+
 const zones = {
-  'VIP': document.querySelectorAll('#VIP path'),
-  'Lower Box': document.querySelectorAll('#Lower\\ Box path'),
-  'Upper Box': document.querySelectorAll('#Upper\\ Box path'),
-  'Gen Adm': document.querySelectorAll('#Gen\\ Adm path'),
+  'VIP': seatContainer.querySelectorAll('#VIP path'),
+  'Lower Box': seatContainer.querySelectorAll('#Lower\\ Box path'),
+  'Upper Box': seatContainer.querySelectorAll('#Upper\\ Box path'),
+  'Gen Adm': seatContainer.querySelectorAll('#Gen\\ Adm path'),
 };
 
-const zoneColors = {
-  'VIP': '#FF0066',
-  'Lower Box': '#C0005A',
-  'Upper Box': '#F4679D',
-  'Gen Adm': '#F0B8CC',
+const zoneCSSVars = {
+  'VIP': '--vip',
+  'Lower Box': '--lower-box',
+  'Upper Box': '--upper-box',
+  'Gen Adm': '--gen-ad',
+};
+
+const zonePrices = {
+  'VIP': 8500,
+  'Lower Box': 5500,
+  'Upper Box': 3500,
+  'Gen Adm': 1500,
 };
 
 const dimmedOpacity = '0.35';
 let selectedPath = null;
 let selectedZone = null;
+let selectedSection = null;
+let quantity = 1;
+
+// DOM Elements
+const quantityInput = document.getElementById('ticket-quantity');
+const minusBtn = document.getElementById('decrease-btn');
+const plusBtn = document.getElementById('increase-btn');
+const selectedZoneDisplay = document.getElementById('selected-zone');
+const selectedSectionDisplay = document.getElementById('selected-section');
+const priceDisplay = document.getElementById('price');
+const quantityDisplay = document.getElementById('quantity');
+const totalPriceDisplay = document.getElementById('total-price');
+const zonePillElement = document.getElementById('zone-pill');
+
+// Update summary display
+const updateSummary = () => {
+  if (selectedZone && selectedSection) {
+    const basePrice = zonePrices[selectedZone];
+    const totalPrice = basePrice * quantity;
+    const cssVar = zoneCSSVars[selectedZone];
+    const colorValue = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+    
+    selectedZoneDisplay.textContent = selectedZone;
+    selectedSectionDisplay.textContent = selectedSection;
+    priceDisplay.textContent = `₱${basePrice.toLocaleString()}`;
+    quantityDisplay.textContent = quantity;
+    totalPriceDisplay.textContent = `₱${totalPrice.toLocaleString()}`;
+    zonePillElement.style.backgroundColor = colorValue;
+    zonePillElement.style.display = 'block';
+  } else {
+    selectedZoneDisplay.textContent = '';
+    selectedSectionDisplay.textContent = '';
+    priceDisplay.textContent = '';
+    quantityDisplay.textContent = '';
+    totalPriceDisplay.textContent = '';
+    zonePillElement.style.display = 'none';
+  }
+};
+
+// Quantity controls
+const updateQuantity = (value) => {
+  if (value >= 1 && value <= 5) {
+    quantity = value;
+    quantityInput.value = quantity;
+    updateSummary();
+  }
+};
+
+quantityInput.addEventListener('change', (e) => {
+  updateQuantity(parseInt(e.target.value) || 1);
+});
+
+minusBtn.addEventListener('click', () => {
+  updateQuantity(quantity - 1);
+});
+
+plusBtn.addEventListener('click', () => {
+  updateQuantity(quantity + 1);
+});
+
+// Zoom helper function
+const getZoneFromPath = (path) => {
+  for (const [zone, paths] of Object.entries(zones)) {
+    if (Array.from(paths).includes(path)) {
+      return zone;
+    }
+  }
+  return null;
+};
+
+// Extract section number from path ID
+const getSectionFromPath = (path) => {
+  const id = path.id;
+  const groupId = path.closest('g')?.id;
+  return groupId || id || 'Unknown';
+};
 
 const dimAll = () => {
-  document.querySelectorAll('svg path').forEach(p => {
+  seatContainer.querySelectorAll('svg path').forEach(p => {
     if (p.getAttribute('fill') !== 'white' && p.getAttribute('fill') !== '#fff') {
       p.style.opacity = dimmedOpacity;
     }
@@ -25,26 +110,29 @@ const dimAll = () => {
 };
 
 const restoreAll = () => {
-  document.querySelectorAll('svg path').forEach(p => p.style.opacity = '1');
+  seatContainer.querySelectorAll('svg path').forEach(p => p.style.opacity = '1');
 };
 
-document.querySelectorAll('svg path').forEach(path => {
+seatContainer.querySelectorAll('svg path').forEach(path => {
   if (path.getAttribute('fill') === 'white' || path.getAttribute('fill') === '#fff') return;
 
+  path.style.cursor = 'pointer';
+
   path.addEventListener('click', () => {
+    const zone = getZoneFromPath(path);
     const isGenAdm = path.closest('#Gen\\ Adm');
 
-    // --- GEN ADM: select entire zone ---
-    if (isGenAdm) {
+    if (isGenAdm && zone === 'Gen Adm') {
       if (selectedZone === 'Gen Adm') {
-        // Deselect
         restoreAll();
         selectedZone = null;
         selectedPath = null;
+        selectedSection = null;
+        quantityDisplay.textContent = '1';
+        updateSummary();
         return;
       }
 
-      // Clear previous individual selection
       if (selectedPath) {
         selectedPath.style.filter = '';
         selectedPath = null;
@@ -55,25 +143,26 @@ document.querySelectorAll('svg path').forEach(path => {
         if (p.getAttribute('fill') !== 'white') p.style.opacity = '1';
       });
       selectedZone = 'Gen Adm';
+      selectedSection = getSectionFromPath(path);
+      updateSummary();
       return;
     }
 
-    // --- OTHER ZONES: select individual section ---
-    // Clear Gen Adm selection if switching
     if (selectedZone === 'Gen Adm') {
       selectedZone = null;
     }
 
-    // Deselect if clicking same path
     if (selectedPath === path) {
       selectedPath.style.opacity = '1';
       selectedPath.style.filter = '';
       selectedPath = null;
+      selectedZone = null;
+      selectedSection = null;
       restoreAll();
+      updateSummary();
       return;
     }
 
-    // Deselect previous
     if (selectedPath) {
       selectedPath.style.opacity = '1';
       selectedPath.style.filter = '';
@@ -83,5 +172,8 @@ document.querySelectorAll('svg path').forEach(path => {
     path.style.opacity = '1';
     path.style.filter = 'brightness(1.4)';
     selectedPath = path;
+    selectedZone = zone;
+    selectedSection = getSectionFromPath(path);
+    updateSummary();
   });
 });

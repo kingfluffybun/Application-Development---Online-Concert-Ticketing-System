@@ -25,9 +25,17 @@
     src: url(/assets/fonts/InterVariable.ttf);
 }
 
-p, h1 {font-family: Inter;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+p, h1, h2 {font-family: Inter;}
 h1 {text-transform: uppercase; font-weight: 900; letter-spacing: 3px;}
 button {outline: none;}
+
+p, a, h1, h2 {user-select: none;}
 
 hero {
     display: flex;
@@ -336,7 +344,7 @@ section {
 
 .ticket-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: auto 1fr;
     align-items: flex-start;
     gap: 20px;
@@ -350,16 +358,23 @@ section {
 }
 
 .seat {
+    display: flex;
+    justify-content: center;
     color: white;
     position: relative;
     background-color: #1F1F1F;
     border: 1px solid rgba(255, 255, 255, 0.08);
     height: 100%;
     svg {
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: auto;
     } svg path {
         stroke: transparent;
+        cursor: pointer;
+        transition: filter 0.15s, opacity 0.15s;
+    }  svg path:hover {
+        filter: brightness(1.5);
+        /* opacity: 0.85; */
     }
     #Stage, #STAGE {pointer-events: none;}
 }
@@ -381,10 +396,118 @@ section {
     
 }
 
-.select-num-tickets {
+.seat-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+}
+
+.select-num-tickets, .order-summary {
+    display: flex;
     background-color: #1F1F1F;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
     padding: 24px;
     color: white;
+}
+
+.select-num-tickets {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-summary {
+    flex-direction: column;
+    gap: 12px;
+    /* height: 100%; */
+    /* flex-grow: 1; */
+}
+
+.order-summary-info {
+    display: flex;
+    flex-direction: column;
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        p:first-child {color: rgba(255, 255, 255, 0.5);}
+        .zone-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            font-size: 12px;
+            background-color: var(--upper-box);
+            border-radius: 16px;
+            p {color: white;}
+        }
+    }
+}
+
+.select-num-tickets {
+    .quantity-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        background-color: #2A2A2A;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    input[type="number"] {
+        text-align: center;
+        font-size: 20px;
+        color: white;
+        background-color: transparent;
+        border: none;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.step {
+    display: flex; 
+    gap: 8px; 
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+}
+
+.step:not(:first-child)::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);;
+    height: 2px;
+    width: 36px;
+}
+
+.step-number {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step.active {
+    color: var(--primary-color);
+}
+
+.step.active .step-number {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+.proceed {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    width: 100%;
+    color: white;
+    background-color: var(--vip);
+    cursor: pointer;
+    border-radius: 8px;
 }

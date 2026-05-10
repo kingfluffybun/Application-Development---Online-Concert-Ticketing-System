@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/style.css">
-    <style>
-        svg path {
-        cursor: pointer;
-        transition: filter 0.15s, opacity 0.15s;
-        }
-
-        svg path:hover {
-        filter: brightness(1.5);
-        /* opacity: 0.85; */
-        }
-    </style>
 </head>
 <body>
     <section class="ticket-form">
-        <div style="grid-column: span 2;">
+        <div style="grid-column: span 2; display: flex; justify-content: space-between; align-items: flex-start;">
             <h1 class="select-seat-header">Select Seat Zone</h1>
+            <div style="display: flex; gap: 8px; align-items: center; padding: 12px;">
+                <div class="step active">
+                    <div class="step-number"><p>1</p></div>
+                    <p>Select Seat</p>
+                </div>
+                <div class="step">
+                    <div class="step-number"><p>2</p></div>
+                    <p>Customer Information</p>
+                </div>
+                <div class="step">
+                    <div class="step-number"><p>3</p></div>
+                    <p>Payment</p>
+                </div>
+                <div class="step">
+                    <div class="step-number"><p>4</p></div>
+                    <p>Thank You!</p>
+                </div>
+            </div>
         </div>
         <div class="select-seat">
             <div class="seat">
@@ -251,11 +258,11 @@
                 <path id="104" d="M751 600.5H829.5V543.5C829.5 543.5 818.335 538.355 811 535.5C805.014 533.17 801.646 531.865 795.5 530C787.433 527.552 782.79 526.533 774.5 525C765.402 523.318 751 522 751 522V600.5Z" fill="#FF0066" stroke="white"/>
                 <path id="104_2" d="M781.162 554.364V566H778.702V556.699H778.634L775.969 558.369V556.188L778.849 554.364H781.162ZM788.49 566.256C787.513 566.252 786.672 566.011 785.967 565.534C785.267 565.057 784.727 564.366 784.348 563.46C783.973 562.555 783.787 561.466 783.791 560.193C783.791 558.924 783.979 557.843 784.354 556.949C784.732 556.055 785.272 555.375 785.973 554.909C786.678 554.439 787.517 554.205 788.49 554.205C789.464 554.205 790.301 554.439 791.001 554.909C791.706 555.379 792.248 556.061 792.626 556.955C793.005 557.845 793.193 558.924 793.189 560.193C793.189 561.47 793 562.561 792.621 563.466C792.246 564.371 791.708 565.062 791.007 565.54C790.306 566.017 789.467 566.256 788.49 566.256ZM788.49 564.216C789.157 564.216 789.689 563.881 790.087 563.21C790.484 562.54 790.681 561.534 790.678 560.193C790.678 559.311 790.587 558.576 790.405 557.989C790.227 557.402 789.973 556.96 789.643 556.665C789.318 556.369 788.933 556.222 788.49 556.222C787.827 556.222 787.297 556.553 786.899 557.216C786.501 557.879 786.301 558.871 786.297 560.193C786.297 561.087 786.386 561.833 786.564 562.432C786.746 563.027 787.001 563.473 787.331 563.773C787.661 564.068 788.047 564.216 788.49 564.216ZM794.767 563.955V562.017L799.625 554.364H801.295V557.045H800.307L797.244 561.892V561.983H804.148V563.955H794.767ZM800.352 566V563.364L800.398 562.506V554.364H802.705V566H800.352Z" fill="white"/>
                 </g>
-                <g id="117_3">
+                <g id="117A">
                 <path id="117_4" d="M715.5 449V509C715.5 509 694.654 509.442 681.5 511.5C671.624 513.045 666.198 514.574 656.5 517C646.066 519.61 639.89 520.272 630 524.5C622.205 527.832 611 535 611 535L581 483C581 483 617.781 467.059 642.5 460.5C670.394 453.098 715.5 449 715.5 449Z" fill="#FF0066" stroke="white"/>
                 <path id="117_5" d="M641.42 485.364V497H638.96V487.699H638.891L636.227 489.369V487.188L639.107 485.364H641.42ZM649.248 485.364V497H646.788V487.699H646.719L644.055 489.369V487.188L646.935 485.364H649.248ZM652.474 497L657.298 487.455V487.375H651.678V485.364H659.843V487.403L655.013 497H652.474Z" fill="white"/>
                 </g>
-                <g id="104_3">
+                <g id="104A">
                 <path id="104_4" d="M729 449V509C729 509 749.846 509.442 763 511.5C772.876 513.045 778.302 514.574 788 517C798.434 519.61 804.61 520.272 814.5 524.5C822.295 527.832 833.5 535 833.5 535L863.5 483C863.5 483 826.719 467.059 802 460.5C774.106 453.098 729 449 729 449Z" fill="#FF0066" stroke="white"/>
                 <path id="104_5" d="M787.162 485.364V497H784.702V487.699H784.634L781.969 489.369V487.188L784.849 485.364H787.162ZM794.49 497.256C793.513 497.252 792.672 497.011 791.967 496.534C791.267 496.057 790.727 495.366 790.348 494.46C789.973 493.555 789.787 492.466 789.791 491.193C789.791 489.924 789.979 488.843 790.354 487.949C790.732 487.055 791.272 486.375 791.973 485.909C792.678 485.439 793.517 485.205 794.49 485.205C795.464 485.205 796.301 485.439 797.001 485.909C797.706 486.379 798.248 487.061 798.626 487.955C799.005 488.845 799.193 489.924 799.189 491.193C799.189 492.47 799 493.561 798.621 494.466C798.246 495.371 797.708 496.062 797.007 496.54C796.306 497.017 795.467 497.256 794.49 497.256ZM794.49 495.216C795.157 495.216 795.689 494.881 796.087 494.21C796.484 493.54 796.681 492.534 796.678 491.193C796.678 490.311 796.587 489.576 796.405 488.989C796.227 488.402 795.973 487.96 795.643 487.665C795.318 487.369 794.933 487.222 794.49 487.222C793.827 487.222 793.297 487.553 792.899 488.216C792.501 488.879 792.301 489.871 792.297 491.193C792.297 492.087 792.386 492.833 792.564 493.432C792.746 494.027 793.001 494.473 793.331 494.773C793.661 495.068 794.047 495.216 794.49 495.216ZM800.767 494.955V493.017L805.625 485.364H807.295V488.045H806.307L803.244 492.892V492.983H810.148V494.955H800.767ZM806.352 497V494.364L806.398 493.506V485.364H808.705V497H806.352Z" fill="white"/>
                 </g>
@@ -266,10 +273,48 @@
                 </svg>
             </div>
         </div>
-        <div>
-            <div class="select-num-tickets">
-                <p>Tickets</p>
+        <div class="seat-summary">
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="order-summary-info">
+                    <div>
+                        <p>Zone</p>
+                        <div class="zone-pill" id="zone-pill" style="display: none;"><p id="selected-zone"></p></div>
+                    </div>
+                    <div>
+                        <p>Section</p>
+                        <p id="selected-section"></p>
+                    </div>
+                    <div>
+                        <p>Price</p>
+                        <p id="price"></p>
+                    </div>
+                    <div>
+                        <p>Quantity</p>
+                        <p id="quantity"></p>
+                    </div>
+                </div>
+                <!-- <hr style="margin: 12px 0;"> -->
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; padding-top: 12px;" >
+                    <h2>Total</h2>
+                    <h2 id="total-price" style="font-size: 48px; color: var(--vip);"></h2>
+                </div>
             </div>
+            <div class="select-num-tickets">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tickets-icon lucide-tickets"><path d="m3.173 8.18 11-5a2 2 0 0 1 2.647.993L18.56 8"/><path d="M6 10V8"/><path d="M6 14v1"/><path d="M6 19v2"/><rect x="2" y="8" width="20" height="13" rx="2"/></svg>
+                    <p>Tickets</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <p style="color: rgba(255, 255, 255, 0.5);">Max 5 Tickets</p>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <div class="quantity-btn" id="decrease-btn" style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></div>
+                        <input type="number" id="ticket-quantity" value="1" min="1" max="5">
+                        <div class="quantity-btn" id="increase-btn" style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></div>
+                    </div>
+                </div>
+            </div>
+            <div class="proceed"><h1>Proceed</h1></div>
         </div>
     </section>
 <script src="../util/script.js"></script>
