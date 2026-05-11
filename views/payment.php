@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
@@ -63,7 +64,7 @@ $totalPrice = $basePrice * $quantity;
                 </div>
                 <div style="text-align: right;">
                     <p><?php echo htmlspecialchars($zone); ?> · Section <?php echo htmlspecialchars($section); ?></p>
-                    <p><?php echo htmlspecialchars($quantity); ?> tickets · August 15, 2026</p>
+                    <p><?= $quantity . ' Ticket' . ($quantity == 1 ? '' : 's'); ?> · August 15, 2026</p>
                 </div>
             </div>
             <div style="padding-bottom: 24px;">
@@ -119,7 +120,7 @@ $totalPrice = $basePrice * $quantity;
                     </div>
                     <div>
                         <p>Quantity</p>
-                        <p><?php echo htmlspecialchars($quantity); ?></p>
+                        <p><?= $quantity . ' Ticket' . ($quantity == 1 ? '' : 's'); ?></p>
                     </div>
                 </div>
                 <!-- <hr style="margin: 12px 0;"> -->

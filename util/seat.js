@@ -51,7 +51,7 @@ const updateSummary = () => {
     selectedZoneDisplay.textContent = selectedZone;
     selectedSectionDisplay.textContent = selectedSection;
     priceDisplay.textContent = `₱${basePrice.toLocaleString()}`;
-    quantityDisplay.textContent = quantity;
+    quantityDisplay.textContent = `${quantity} ${(quantity > 1) ? "Tickets" : "Ticket"}`;
     totalPriceDisplay.textContent = `₱${totalPrice.toLocaleString()}`;
     zonePillElement.style.backgroundColor = colorValue;
     zonePillElement.style.display = 'block';

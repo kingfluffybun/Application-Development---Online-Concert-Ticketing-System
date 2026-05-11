@@ -13,6 +13,18 @@
     --vip: #FF0066;
 }
 
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation-duration: 0.4s;
+}
+
+::view-transition-new(root) {
+    animation-duration: 0.4s;
+}
+
 @font-face {
     font-family: Primetime;
     src: url(/assets/fonts/Primetime.ttf);
