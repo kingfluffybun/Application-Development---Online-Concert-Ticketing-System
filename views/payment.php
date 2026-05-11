@@ -21,10 +21,10 @@ $quantity = (int)($_POST['quantity'] ?? 1);
 $user_id = $_SESSION['user_id'] ?? '';
 
 $zonePrices = [
-    'VIP' => 8500,
-    'Lower Box' => 5500,
-    'Upper Box' => 3500,
-    'Gen Adm' => 1500,
+    'VIP' => 19500,
+    'Lower Box' => 14000,
+    'Upper Box' => 9000,
+    'Gen Adm' => 3000,
 ];
 $basePrice = $zonePrices[$zone] ?? 0;
 $totalPrice = $basePrice * $quantity;
