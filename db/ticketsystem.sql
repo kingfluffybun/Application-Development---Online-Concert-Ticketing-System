@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2026 at 03:41 PM
+-- Generation Time: May 11, 2026 at 08:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,8 +34,17 @@ CREATE TABLE `tickets` (
   `section` varchar(255) NOT NULL,
   `quantity` int(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `transac_no` int(11) NOT NULL
+  `transac_no` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tickets`
+--
+
+INSERT INTO `tickets` (`ticket_id`, `user_id`, `zone`, `section`, `quantity`, `price`, `transac_no`, `created_at`) VALUES
+(1, 2, 'Upper Box', '404', 3, 10500.00, 12321321, '2026-05-11 18:27:20'),
+(2, 2, 'VIP', '104A', 4, 34000.00, 21312312, '2026-05-11 18:27:20');
 
 -- --------------------------------------------------------
 
@@ -84,7 +93,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
