@@ -307,7 +307,7 @@ if (isset($_SESSION['user_id'])) {
           </div>
           <div class="ticket-stat">
             <p class="ticket-stat-label">Total Spent</p>
-            <p class="ticket-stat-value">₱<?php echo htmlspecialchars($total_spent); ?></p>
+            <p class="ticket-stat-value">₱<?php echo htmlspecialchars(number_format($total_spent, 2)); ?></p>
           </div>
         </div>
 
