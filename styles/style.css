@@ -441,7 +441,7 @@ section {
     gap: 12px;
 }
 
-.seat, .payment {
+.seat, .payment, .payment-details {
     display: flex;
     color: white;
     position: relative;
@@ -675,4 +675,47 @@ section {
     transition: all ease 250ms;
 } .proceed:hover {
     transform: scale(1.025);
+}
+
+.payment-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    h2 {color: white; text-align: center;}
+}
+
+.payment-success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: -56px;
+}
+
+.big-check {
+    background-color: var(--vip);
+    padding: 16px;
+    max-height: 128px;
+    max-width: 128px;
+    border-radius: 50%;
+}
+
+.payment-details {
+    flex-direction: column;
+    padding: 24px;
+    min-width: 520px;
+}
+
+.payment-details-content {
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    div {
+        display: flex; gap: 8px; align-items: center;
+    }
+    p:first-child {
+        color: rgba(255, 255, 255, 0.5);
+    }
 }
