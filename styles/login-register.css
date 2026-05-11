@@ -4,9 +4,16 @@
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Inter;
+    src: url(/assets/fonts/InterVariable.ttf);
+}
+
+p, a, h1, h2 {user-select: none;}
+
 body {
   min-height: 100vh;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter;
   background: linear-gradient(145deg, #fff1f6 0%, #ffe5ef 62%, #f9d9eb 100%);
   background-attachment: fixed;
   position: relative;
@@ -63,7 +70,7 @@ body {
 }
 
 .auth-hero {
-  padding: 24px 36px 14px;
+  padding: 48px 48px 24px;
 }
 
 .hero-tag {
@@ -91,12 +98,13 @@ body {
 }
 
 .hero-headline h3 {
+    min-width: 200px;
   margin: 0;
   font-size: clamp(1.5rem, 3.2vw, 1.9rem);
-  letter-spacing: 0.25em;
+  letter-spacing: 3px;
   line-height: 1.1;
   color: #ffc5e0;
-  font-family: 'Arial Black', sans-serif;
+  font-family: Inter;
   font-weight: 900;
   text-transform: uppercase;
   text-shadow: 0 0 2px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.5);
@@ -108,6 +116,7 @@ body {
   line-height: 1.75;
   font-size: 0.96rem;
   max-width: 100%;
+  text-align: center;
 }
 
 .auth-form {
@@ -257,12 +266,12 @@ body {
 
 .link-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 22px;
-  margin-top: 1px;
-  margin-bottom: 24px;
+  margin-top: 8px;
+  margin-bottom: 12px;
 }
 
 .link-row a {
@@ -312,6 +321,8 @@ body {
   background: #fff5fa;
   border-top: 1px solid rgba(255, 150, 204, 0.18);
   flex-wrap: wrap;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .auth-footer span {

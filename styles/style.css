@@ -55,8 +55,6 @@ hero {
         background-position: 0 0;
     }
     to {
-        /* This should match the width/height in your SVG (40px) 
-           to ensure a seamless loop */
         background-position: 40px 40px; 
     }
 }

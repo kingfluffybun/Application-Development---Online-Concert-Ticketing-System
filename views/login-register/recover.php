@@ -11,7 +11,7 @@
     <div class="auth-shell">
     <article class="auth-card">
       <header class="auth-hero">
-        <span class="hero-tag">Account Recovery</span>
+        <!-- <span class="hero-tag">Account Recovery</span> -->
         <div class="hero-headline">
           <h3>Recover</h3>
         </div>

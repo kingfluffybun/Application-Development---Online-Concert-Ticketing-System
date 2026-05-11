@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="auth-shell">
     <article class="auth-card">
       <header class="auth-hero">
-        <span class="hero-tag">Create Account</span>
+        <!-- <span class="hero-tag">Create Account</span> -->
         <div class="hero-headline">
           <h3>Register</h3>
         </div>
