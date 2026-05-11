@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $identifier = $_POST['identifier'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT user_id, user_name, password FROM users WHERE user_name = ? OR email = ?");
+    $stmt = $conn->prepare("SELECT user_id, user_name, user_password FROM users WHERE user_name = ? OR user_email = ?");
     $stmt->bind_param("ss", $identifier, $identifier);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
+        if (password_verify($password, $user['user_password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
             header("Location: ../index.php");

@@ -1,3 +1,63 @@
+<?php 
+  session_start();
+  include '../../db/db.php';
+
+  function getInitials($name) {
+    $words = explode(' ', $name);
+    $initials = '';
+
+    foreach ($words as $word) {
+      $initials .= mb_strtoupper(mb_substr($word, 0, 1));
+    }
+
+    return $initials;
+  }
+
+  if (isset($_SESSION['user_name'])) {
+    $check = $conn->prepare("SELECT * FROM users WHERE user_name = ?");
+    $check->bind_param("s", $_SESSION['user_name']);
+    $check->execute();
+    $result = $check->get_result();
+
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $_SESSION['user_email'] = $row['user_email'];
+      $_SESSION['created_at'] = new DateTime($row['created_at']);
+    } else {
+      $_SESSION['user_email'] = "aaaaaa";
+      $_SESSION['created_at'] = "Unknown";
+    }
+  }
+
+  if (isset($_SESSION['user_id'])) {
+    $checkTickets = $conn->prepare("SELECT COUNT(*) AS total FROM tickets WHERE user_id = ?");
+    $checkTickets->bind_param("i", $_SESSION['user_id']);
+    $checkTickets->execute();
+    $resultTickets = $checkTickets->get_result();
+
+    if ($resultTickets->num_rows > 0) {
+      $rowTickets = $resultTickets->fetch_assoc();
+      $total_tickets = $rowTickets['total'];
+    } else {
+      $total_tickets = 0;
+    }
+  }
+
+  if (isset($_SESSION['user_id'])) {
+    $checkSpent = $conn->prepare("SELECT SUM(price) AS total_spent FROM tickets WHERE user_id = ?");
+    $checkSpent->bind_param("i", $_SESSION['user_id']);
+    $checkSpent->execute();
+    $resultSpent = $checkSpent->get_result();
+
+    if ($resultSpent->num_rows > 0) {
+      $rowSpent = $resultSpent->fetch_assoc();
+      $total_spent = $rowSpent['total_spent'];
+    } else {
+      $total_spent = 0;
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +73,21 @@
     <aside class="profile-sidebar">
       <div class="profile-avatar-block">
         <div class="profile-avatar">
-          <span class="avatar-initials">TE</span>
+          <span class="avatar-initials"><?= getInitials($_SESSION['user_name'] ?? 'Guest') ?></span>
           <div class="avatar-ring"></div>
         </div>
         <div class="profile-meta">
-          <p class="profile-username">TestExample</p>
-          <p class="profile-email">TestExample@gmail.com</p>
+          <?php if (isset($_SESSION['user_name'])): ?>
+            <p class="profile-username"><?= htmlspecialchars($_SESSION['user_name']); ?></p>
+          <?php else: ?>
+            <p class="profile-username">Guest</p>
+          <?php endif; ?>
+
+          <?php if (isset($_SESSION['user_email'])): ?>
+            <p class="profile-email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
+          <?php else: ?>
+            <p class="profile-email">No Email</p>
+          <?php endif; ?>
         </div>
       </div>
 
@@ -35,13 +104,13 @@
           </span>
           <span>Manage Tickets</span>
         </a>
-        <a href="../index.php" class="sidenav-item" title="Back to Home">
+        <a href="/views/index.php" class="sidenav-item home-btn" title="Back to Home">
           <span class="sidenav-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </span>
           <span>Home</span>
         </a>
-        <a href="../login-register/login.php" class="sidenav-item" title="Logout">
+        <a href="/views/login-register/login.php" class="sidenav-item logout-btn" title="Logout">
           <span class="sidenav-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           </span>
@@ -87,7 +156,7 @@
             <div class="profile-card-body">
               <div class="input-group">
                 <label>Current Username</label>
-                <div class="input-display"><span>TestExample</span></div>
+                <div class="input-display"><span><?php echo htmlspecialchars($_SESSION['user_name']); ?></span></div>
               </div>
               <div class="input-group">
                 <label for="new-username">New Username</label>
@@ -141,15 +210,15 @@
             <div class="profile-card-body">
               <div class="info-row">
                 <p class="info-row-label">Email</p>
-                <p class="info-row-value">TestExample@gmail.com</p>
+                <p class="info-row-value"><?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
               </div>
               <div class="info-row">
                 <p class="info-row-label">Member Since</p>
-                <p class="info-row-value">May 2026</p>
+                <p class="info-row-value"><?php echo htmlspecialchars($_SESSION['created_at']->format('F j, Y')); ?></p>
               </div>
               <div class="info-row">
                 <p class="info-row-label">Total Tickets Bought</p>
-                <p class="info-row-value">4</p>
+                <p class="info-row-value"><?php echo htmlspecialchars($total_tickets); ?></p>
               </div>
             </div>
           </div>
@@ -166,11 +235,11 @@
         <div class="ticket-summary-bar">
           <div class="ticket-stat">
             <p class="ticket-stat-label">Total Tickets</p>
-            <p class="ticket-stat-value">5</p>
+            <p class="ticket-stat-value"><?php echo htmlspecialchars($total_tickets); ?></p>
           </div>
           <div class="ticket-stat">
             <p class="ticket-stat-label">Total Spent</p>
-            <p class="ticket-stat-value">₱20,500.00</p>
+            <p class="ticket-stat-value">₱<?php echo htmlspecialchars($total_spent); ?></p>
           </div>
         </div>
 
@@ -306,7 +375,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const sidenavItems = document.querySelectorAll('.sidenav-item:not(.logout-btn)');
+      const sidenavItems = document.querySelectorAll('.sidenav-item:not(.logout-btn):not(.home-btn)');
       const logoutBtn = document.querySelector('.logout-btn');
       const sections = document.querySelectorAll('.profile-section');
 
@@ -335,7 +404,7 @@
       logoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
         if (confirm('Are you sure you want to logout?')) {
-          window.location.href = '../../index.php';
+          window.location.href = '/views/index.php';
         }
       });
     });
