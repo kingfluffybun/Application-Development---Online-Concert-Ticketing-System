@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2026 at 11:29 AM
+-- Generation Time: May 11, 2026 at 06:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,40 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gen_ad`
+-- Table structure for table `tickets`
 --
 
-CREATE TABLE `gen_ad` (
-  `gen_id` int(11) NOT NULL,
-  `seat_number` int(11) NOT NULL,
-  `occupied` varchar(10) NOT NULL DEFAULT 'Yes, No',
-  `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lower_box`
---
-
-CREATE TABLE `lower_box` (
-  `lower_id` int(11) NOT NULL,
-  `seat_number` int(11) NOT NULL,
-  `occupied` varchar(10) NOT NULL DEFAULT 'Yes, No',
-  `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `upper_box`
---
-
-CREATE TABLE `upper_box` (
-  `upper_id` int(11) NOT NULL,
-  `seat_number` int(11) NOT NULL,
-  `occupied` varchar(10) NOT NULL DEFAULT 'Yes, No',
-  `price` int(11) NOT NULL
+CREATE TABLE `tickets` (
+  `ticket_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `zone` varchar(255) NOT NULL,
+  `section` varchar(255) NOT NULL,
+  `quantity` int(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `transac_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,40 +51,24 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `vip_box`
+-- Dumping data for table `users`
 --
 
-CREATE TABLE `vip_box` (
-  `vip_id` int(11) NOT NULL,
-  `seat_number` int(11) NOT NULL,
-  `occupied` varchar(255) NOT NULL DEFAULT 'Yes, No',
-  `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `users` (`user_id`, `user_name`, `password`, `email`, `created_at`) VALUES
+(1, 'daniyadarrell23g1', '$2y$10$unrlsO15vmU53dFV7AJsOON0evdhpFcRq2/e0TtRpUKAkOb3QAgxy', 'henry.kashlie@gmail.com', '2026-05-10 19:16:43'),
+(2, 'henry', '$2y$10$S5m6QuSgs9duxbuyAWlnLeR2TGad/14ZPE8PDceWZSqpvu3IuAHc2', 'henry.kashlie@gmail.com', '2026-05-10 19:34:28');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `gen_ad`
+-- Indexes for table `tickets`
 --
-ALTER TABLE `gen_ad`
-  ADD PRIMARY KEY (`gen_id`);
-
---
--- Indexes for table `lower_box`
---
-ALTER TABLE `lower_box`
-  ADD PRIMARY KEY (`lower_id`);
-
---
--- Indexes for table `upper_box`
---
-ALTER TABLE `upper_box`
-  ADD PRIMARY KEY (`upper_id`);
+ALTER TABLE `tickets`
+  ADD PRIMARY KEY (`ticket_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -116,44 +77,30 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `vip_box`
---
-ALTER TABLE `vip_box`
-  ADD PRIMARY KEY (`vip_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `gen_ad`
+-- AUTO_INCREMENT for table `tickets`
 --
-ALTER TABLE `gen_ad`
-  MODIFY `gen_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `lower_box`
---
-ALTER TABLE `lower_box`
-  MODIFY `lower_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `upper_box`
---
-ALTER TABLE `upper_box`
-  MODIFY `upper_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tickets`
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `vip_box`
+-- Constraints for dumped tables
 --
-ALTER TABLE `vip_box`
-  MODIFY `vip_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for table `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
