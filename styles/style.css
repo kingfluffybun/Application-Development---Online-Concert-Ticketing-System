@@ -38,7 +38,13 @@ a {text-decoration: none;}
 
 p, a, h1, h2 {user-select: none;}
 
+html {
+    scroll-snap-type: y proximity;
+    overflow-y: auto;
+}
+
 hero {
+    scroll-snap-align: start;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -230,6 +236,7 @@ section {
 }
 
 .ticket-pricing-section {
+    scroll-snap-align: start;
     align-items: center;
     justify-content: center;
 }
@@ -368,6 +375,7 @@ section {
 }
 
 .artist-section {
+    scroll-snap-align: start;
     justify-content: center;
     position:relative;
     height: 100vh;

@@ -125,7 +125,7 @@ $totalPrice = $basePrice * $quantity;
                 <!-- <hr style="margin: 12px 0;"> -->
                 <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; padding-top: 12px;" >
                     <h2>Total</h2>
-                    <h2 id="total-price" style="font-size: 48px;">₱<?php echo number_format($totalPrice); ?></h2>
+                    <h2 id="total-price" style="font-size: 48px; color: var(--vip);">₱<?php echo number_format($totalPrice); ?></h2>
                 </div>
             </div>
             <div class="order-summary">
