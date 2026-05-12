@@ -2,6 +2,90 @@
 session_start();
 include '../../db/db.php';
 
+// Redirect if not logged in
+if (!isset($_SESSION['user_email'])) {
+  header("Location: ../login-register/login.php");
+  exit();
+}
+
+$update_message = '';
+$update_error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['update_email'])) {
+    $new_email = filter_var($_POST['new_email'], FILTER_SANITIZE_EMAIL);
+    $confirm_password = $_POST['confirm_password_email'];
+
+    if (empty($new_email) || empty($confirm_password)) {
+      $update_error = "Please fill in all email update fields.";
+    } elseif (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
+      $update_error = "Invalid email format.";
+    } else {
+      // Verify password
+      $stmt = $conn->prepare("SELECT user_password FROM users WHERE user_id = ?");
+      $stmt->bind_param("i", $_SESSION['user_id']);
+      $stmt->execute();
+      $res = $stmt->get_result();
+      if ($res->num_rows > 0) {
+        $user = $res->fetch_assoc();
+        if (password_verify($confirm_password, $user['user_password'])) {
+          // Check if new email is already taken
+          $check_email = $conn->prepare("SELECT user_id FROM users WHERE user_email = ? AND user_id != ?");
+          $check_email->bind_param("si", $new_email, $_SESSION['user_id']);
+          $check_email->execute();
+          if ($check_email->get_result()->num_rows > 0) {
+            $update_error = "Email is already in use by another account.";
+          } else {
+            // Update email
+            $update = $conn->prepare("UPDATE users SET user_email = ? WHERE user_id = ?");
+            $update->bind_param("si", $new_email, $_SESSION['user_id']);
+            if ($update->execute()) {
+              $_SESSION['user_email'] = $new_email;
+              $update_message = "Email updated successfully.";
+            } else {
+              $update_error = "Error updating email.";
+            }
+          }
+        } else {
+          $update_error = "Incorrect password.";
+        }
+      }
+    }
+  } elseif (isset($_POST['update_password'])) {
+    $current_password = $_POST['current_password'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
+      $update_error = "Please fill in all password update fields.";
+    } elseif ($new_password !== $confirm_password) {
+      $update_error = "New passwords do not match.";
+    } else {
+      // Verify current password
+      $stmt = $conn->prepare("SELECT user_password FROM users WHERE user_id = ?");
+      $stmt->bind_param("i", $_SESSION['user_id']);
+      $stmt->execute();
+      $res = $stmt->get_result();
+      if ($res->num_rows > 0) {
+        $user = $res->fetch_assoc();
+        if (password_verify($current_password, $user['user_password'])) {
+          // Update password
+          $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+          $update = $conn->prepare("UPDATE users SET user_password = ? WHERE user_id = ?");
+          $update->bind_param("si", $hashed_password, $_SESSION['user_id']);
+          if ($update->execute()) {
+            $update_message = "Password updated successfully.";
+          } else {
+            $update_error = "Error updating password.";
+          }
+        } else {
+          $update_error = "Incorrect current password.";
+        }
+      }
+    }
+  }
+}
+
 function getInitials($name)
 {
   $words = explode(' ', $name);
@@ -91,6 +175,7 @@ if (isset($_SESSION['user_id'])) {
     }
   }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,43 +281,56 @@ if (isset($_SESSION['user_id'])) {
           <p>Update your account information below.</p>
         </div>
 
+        <?php if ($update_message): ?>
+          <div class="alert alert-success" style="padding: 10px; background: rgba(46,204,113,0.1); color: #2ecc71; border-radius: 12px; border: 1px solid rgba(46,204,113,0.3); display: flex; align-items: center; font-size: 14px; font-weight: 600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+            <?= $update_message ?>
+          </div>
+        <?php endif; ?>
+        <?php if ($update_error): ?>
+          <div class="alert alert-error" style="padding: 10px; background: rgba(231,76,60,0.1); color: #e74c3c; border-radius: 12px; border: 1px solid rgba(231,76,60,0.3); display: flex; align-items: center; font-size: 14px; font-weight: 600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+            <?= $update_error ?>
+          </div>
+        <?php endif; ?>
+
         <div class="profile-cards-grid">
 
-          <div class="profile-card">
+          <form action="" method="POST" class="profile-card">
             <div class="profile-card-label">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4" />
                 <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
               </svg>
-              <p>Username</p>
+              <p>Email</p>
             </div>
             <div class="profile-card-body">
               <div class="input-group">
-                <label>Current Username</label>
-                <div class="input-display"><span><?php echo htmlspecialchars(($_SESSION['first_name'] ?? '') . ' ' . ($_SESSION['last_name'] ?? '')); ?></span></div>
+                <label>Current Email</label>
+                <div class="input-display"><span><?php echo htmlspecialchars($_SESSION['user_email'] ?? ''); ?></span></div>
               </div>
               <div class="input-group">
-                <label for="new-username">New Username</label>
-                <input type="text" id="new-username" name="new_username" placeholder="Enter new username" />
+                <label for="new-email">New Email</label>
+                <input type="email" id="new-email" name="new_email" placeholder="Enter new email" required />
               </div>
               <div class="input-group">
-                <label for="confirm-username-password">Confirm with Password</label>
-                <input type="password" id="confirm-username-password" name="confirm_password_username" placeholder="Enter your password" />
+                <label for="confirm-email-password">Confirm with Password</label>
+                <input type="password" id="confirm-email-password" name="confirm_password_email" placeholder="Enter your password" required />
               </div>
             </div>
             <div class="profile-card-footer">
-              <button class="btn-save" type="button">
+              <button class="btn-save" type="submit" name="update_email">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
                   <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                   <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                 </svg>
-                Save Username
+                Save Email
               </button>
             </div>
-          </div>
+          </form>
 
-          <div class="profile-card">
+          <form action="" method="POST" class="profile-card">
             <div class="profile-card-label">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="16" r="1" />
@@ -244,19 +342,19 @@ if (isset($_SESSION['user_id'])) {
             <div class="profile-card-body">
               <div class="input-group">
                 <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="current_password" placeholder="Enter current password" />
+                <input type="password" id="current-password" name="current_password" placeholder="Enter current password" required />
               </div>
               <div class="input-group">
                 <label for="new-password">New Password</label>
-                <input type="password" id="new-password" name="new_password" placeholder="Enter new password" />
+                <input type="password" id="new-password" name="new_password" placeholder="Enter new password" required />
               </div>
               <div class="input-group">
                 <label for="confirm-password">Confirm New Password</label>
-                <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password" />
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password" required />
               </div>
             </div>
             <div class="profile-card-footer">
-              <button class="btn-save" type="button">
+              <button class="btn-save" type="submit" name="update_password">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
                   <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
@@ -265,7 +363,7 @@ if (isset($_SESSION['user_id'])) {
                 Save Password
               </button>
             </div>
-          </div>
+          </form>
 
           <div class="profile-card profile-card--info">
             <div class="profile-card-label">
