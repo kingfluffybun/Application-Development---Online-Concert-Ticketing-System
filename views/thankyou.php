@@ -168,7 +168,7 @@
                     </a>
                 </div>
             </div>
-
+        </div>
     </section>
     <script src="../util/payment.js"></script>
 </body>
