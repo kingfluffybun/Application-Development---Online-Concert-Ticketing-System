@@ -15,9 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role = 'user';
 
-    $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $password);
+    $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password, role) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sss", $username, $email, $password, $role);
     if ($stmt->execute()) {
         header("Location: login.php");
         exit();
