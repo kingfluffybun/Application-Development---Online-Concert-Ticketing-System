@@ -73,7 +73,7 @@ $otp_email   = $_SESSION['otp_email'] ?? '';
 <script>document.getElementById('forward-form').submit();</script>
 <?php endif; ?>
     <section class="ticket-form-section">
-    <a href="/views/">
+    <a href="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
         <p>Back to Home</p>
     </a>
@@ -262,6 +262,6 @@ $otp_email   = $_SESSION['otp_email'] ?? '';
             <p>Smart Araneta Coliseum, Quezon City · August 15, 2026 · 6:00 PM</p>
         </div>
     </footer>
-<script src="../util/payment.js"></script>
+<script src="/util/payment.js"></script>
 </body>
 </html>

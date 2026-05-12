@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <section class="ticket-form-section">
-    <a href="./">
+    <a href="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
         <p>Back to Home</p>
     </a>
@@ -447,10 +447,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="footer-column">
                 <p class="footer-header">NAVIGATE</p>
                 <div>
-                    <a href="/views/index.php#home"><p>Home</p></a>
-                    <a href="/views/index.php#ticket"><p>Tickets</p></a>
-                    <a href="/views/index.php#members"><p>Members</p></a>
-                    <a href="/views/index.php#faq"><p>FAQ</p></a>
+                    <a href="/#home"><p>Home</p></a>
+                    <a href="/#ticket"><p>Tickets</p></a>
+                    <a href="/#members"><p>Members</p></a>
+                    <a href="/#faq"><p>FAQ</p></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -478,6 +478,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>Smart Araneta Coliseum, Quezon City · August 15, 2026 · 6:00 PM</p>
         </div>
     </footer>
-<script src="../util/seat.js"></script>
+<script src="/util/seat.js"></script>
 </body>
 </html>
