@@ -20,6 +20,11 @@ $section = $_POST['section'] ?? '';
 $quantity = (int)($_POST['quantity'] ?? 1);
 $user_id = $_SESSION['user_id'] ?? '';
 
+if (empty($zone) || empty($section)) {
+    header("Location: seats.php?error=seat");
+    exit();
+}
+
 $zonePrices = [
     'VIP' => 19500,
     'Lower Box' => 14000,
