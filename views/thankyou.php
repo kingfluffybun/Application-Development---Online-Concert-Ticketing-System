@@ -62,6 +62,7 @@
         $stmt->close();
     }
 
+
     if ($ticket) {
         $zoneDisplay = htmlspecialchars($ticket['zone']);
         $sectionDisplay = htmlspecialchars($ticket['section']);
@@ -119,7 +120,7 @@
                     <h2 style="text-align: left; margin-bottom: 8px;">Order Details</h2>
                     <div class="payment-details-content">
                         <p>Buyer Name</p>
-                        <p>Clarence Jerald Luna</p>
+                        <p><?php echo htmlspecialchars($_SESSION['first_name']); ?> <?php echo htmlspecialchars($_SESSION['last_name']); ?></p>
                     </div>
                     <div class="payment-details-content">
                         <p>Date</p>

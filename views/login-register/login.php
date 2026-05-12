@@ -9,28 +9,29 @@
 <?php
 session_start();
 include '../../db/db.php';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $identifier = $_POST['identifier'];
-    $password = $_POST['password'];
-
-    $stmt = $conn->prepare("SELECT user_id, user_name, user_password, role FROM users WHERE user_name = ? OR user_email = ?");
-    $stmt->bind_param("ss", $identifier, $identifier);
+    $identifier = $_POST['identifier'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $stmt = $conn->prepare("SELECT user_id, first_name, last_name, user_email, user_password, role FROM users WHERE user_email = ?");
+    $stmt->bind_param("s", $identifier);
     $stmt->execute();
     $result = $stmt->get_result();
+    
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['user_password'])) {
             $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['user_email'] = $user['user_email'];
             $_SESSION['role'] = $user['role'];
             header("Location: ../index.php");
             exit();
         } else {
-            echo "Invalid password";
+            $error = "Invalid password";
         }
     } else {
-        echo "User not found";
+        $error = "User not found";
     }
 }
 ?>
