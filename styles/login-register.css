@@ -70,7 +70,7 @@ body {
 }
 
 .auth-hero {
-  padding: 48px 48px 24px;
+  padding: 48px 48px 0px;
 }
 
 .hero-tag {
@@ -190,6 +190,17 @@ body {
   background: #fff5f9;
   padding: 0 6px;
   top: 0;
+}
+
+.login-error-message {
+    background-color: #F3A9A9;
+    color: #B6201F;
+    padding: 16px;
+    border-radius: 18px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .password-group input {

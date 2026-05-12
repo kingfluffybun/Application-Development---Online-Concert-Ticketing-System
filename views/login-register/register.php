@@ -10,7 +10,7 @@
 <?php
 session_start();
 include '../../db/db.php';
-
+$error = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -19,17 +19,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm_password = $_POST['confirm_password'];
     $role = 'user';
 
-    if ($password !== $confirm_password) {
-        echo "Passwords do not match.";
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
+        $error = "All fields are required.";
+    } elseif (!ctype_alpha($firstname) || !ctype_alpha($lastname)) {
+        $error = "Name should contain letters only.";
+    } elseif (!preg_match("/^[A-Z0-9._%-]+@[A-Z0-9][A-Z0-9.-]{0,61}[A-Z0-9]\.[A-Z]{2,6}$/i", $email)) {
+        $error = "Invalid email address.";
+    } elseif ($password !== $confirm_password) {
+        $error = "Passwords do not match.";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, user_password, role) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $firstname, $lastname, $email, $hashed_password, $role);
-        if ($stmt->execute()) {
-            header("Location: login.php");
-            exit();
+        $check = $conn->prepare("SELECT user_id FROM users WHERE user_email = ?");
+        $check->bind_param("s", $email);
+        $check->execute();
+        $check->store_result();
+
+        if ($check->num_rows > 0) {
+        $error = "Email is already taken.";
         } else {
-            echo "Error: " . $stmt->error;
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, user_password, role) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $firstname, $lastname, $email, $hashed_password, $role);
+            if ($stmt->execute()) {
+                header("Location: login.php");
+                exit();
+            } else {
+                echo "Error: " . $stmt->error;
+            }
         }
     }
 }
@@ -47,6 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </header>
 
       <form class="auth-form" action="#" method="post" autocomplete="off">
+        
+        <?php if ($error !== null) {
+            echo '<div class="login-error-message">';
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>';
+            echo '<p>' . htmlspecialchars($error) . '</p>';
+            echo '</div>';
+        }; ?>
+        
         <div style="display:flex; gap:12px;">
             <div class="form-group">
                 <input id="register-firstname" name="firstname" type="text" placeholder=" " autocomplete="firstname">

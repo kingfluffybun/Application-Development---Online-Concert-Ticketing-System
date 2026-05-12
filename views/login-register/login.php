@@ -9,29 +9,36 @@
 <?php
 session_start();
 include '../../db/db.php';
+$error = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $identifier = $_POST['identifier'] ?? '';
     $password = $_POST['password'] ?? '';
-    $stmt = $conn->prepare("SELECT user_id, first_name, last_name, user_email, user_password, role FROM users WHERE user_email = ?");
-    $stmt->bind_param("s", $identifier);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['user_password'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['first_name'] = $user['first_name'];
-            $_SESSION['last_name'] = $user['last_name'];
-            $_SESSION['user_email'] = $user['user_email'];
-            $_SESSION['role'] = $user['role'];
-            header("Location: ../index.php");
-            exit();
-        } else {
-            $error = "Invalid password";
-        }
+
+    if (empty($identifier) || empty($password)) {
+        $error = "All fields are required.";
+    } elseif (!preg_match("/^[A-Z0-9._%-]+@[A-Z0-9][A-Z0-9.-]{0,61}[A-Z0-9]\.[A-Z]{2,6}$/i", $identifier)) {
+        $error = "Invalid email address.";
     } else {
-        $error = "User not found";
+        $stmt = $conn->prepare("SELECT user_id, first_name, last_name, user_email, user_password, role FROM users WHERE user_email = ?");
+        $stmt->bind_param("s", $identifier);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['user_password'])) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['first_name'] = $user['first_name'];
+                $_SESSION['last_name'] = $user['last_name'];
+                $_SESSION['user_email'] = $user['user_email'];
+                $_SESSION['role'] = $user['role'];
+                header("Location: ../index.php");
+                exit();
+            } else {
+                $error = "Invalid password";
+            }
+        } else {
+            $error = "User not found";
+        }
     }
 }
 ?>
@@ -48,6 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </header>
 
       <form class="auth-form" action="#" method="post" autocomplete="off">
+        <?php if ($error !== null) { 
+            echo '<div class="login-error-message">';
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>';
+            echo "<p>$error</p>";
+            echo '</div>';
+        ;} ?>
         <div class="form-group">
           <input id="login-identifier" name="identifier" type="text" placeholder=" " autocomplete="username">
           <label for="login-identifier">Email</label>
