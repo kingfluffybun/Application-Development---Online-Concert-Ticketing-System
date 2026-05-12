@@ -14,16 +14,22 @@ include '../../db/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     $role = 'user';
 
-    $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password, role) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $password, $role);
-    if ($stmt->execute()) {
-        header("Location: login.php");
-        exit();
+    if ($password !== $confirm_password) {
+        echo "Passwords do not match.";
     } else {
-        echo "Error: " . $stmt->error;
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $username, $email, $hashed_password, $role);
+        if ($stmt->execute()) {
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 }
 ?>
