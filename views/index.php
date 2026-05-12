@@ -23,16 +23,16 @@ session_start();
                 <!-- <a class="a-text"><p>Schedule</p></a> -->
                 <a href="#artist" class="a-text"><p>Artists</p></a>
                 <a class="a-text"><p>FAQ</p></a>
-                <?php if (!isset($_SESSION['user_name'])): ?>
+                <?php if (!isset($_SESSION['first_name'])): ?>
                     <a href='/views/login-register/login.php' class='a-text'><p>Login</p></a>
                 <?php else: ?>
                     <a href="/views/profile/profile.php" class="a-text" style="display: flex; gap: 8px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-                        <p><?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
+                        <p><?php echo htmlspecialchars($_SESSION['first_name']); ?></p>
                     </a>
                 <?php endif; ?>
 
-                <!-- <?php if (isset($_SESSION['user_name'])) {echo "<a href='/views/login-register/logout.php' class='a-text'><p>Logout</p></a>";} ?> -->
+                <!-- <?php if (isset($_SESSION['user_email'])) {echo "<a href='/views/login-register/logout.php' class='a-text'><p>Logout</p></a>";} ?> -->
             </div>
         </div>
         <div class="hero-banner-container">
