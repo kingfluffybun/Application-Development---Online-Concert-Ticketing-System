@@ -145,20 +145,6 @@ if (isset($_SESSION['user_id'])) {
           </span>
           <span>Manage Tickets</span>
         </a>
-        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="/views/admin-dashboard/admin-dashboard.php" class="sidenav-item admin-btn" title="Admin Dashboard">
-          <span class="sidenav-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-              <path d="M18 3v4"/>
-              <path d="M9 11h6"/>
-              <path d="M9 15h6"/>
-              <rect x="15" y="3" width="6" height="6" rx="1"/>
-            </svg>
-          </span>
-          <span>Admin Dashboard</span>
-        </a>
-        <?php endif; ?>
         <a href="/views/index.php" class="sidenav-item home-btn" title="Back to Home">
           <span class="sidenav-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
