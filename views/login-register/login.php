@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $identifier = $_POST['identifier'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT user_id, user_name, user_password FROM users WHERE user_name = ? OR user_email = ?");
+    $stmt = $conn->prepare("SELECT user_id, user_name, user_password, role FROM users WHERE user_name = ? OR user_email = ?");
     $stmt->bind_param("ss", $identifier, $identifier);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['user_password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['role'] = $user['role'];
             header("Location: ../index.php");
             exit();
         } else {
