@@ -1,3 +1,23 @@
+<?php
+require_once '../../db/db.php';
+$buyers_quantity = "SELECT SUM(quantity) as total_tickets, SUM(price) as total_revenue, COUNT(DISTINCT user_id) as total_buyers FROM tickets";
+$buyers_total = mysqli_query($conn, $buyers_quantity);
+$totalbuyers = mysqli_fetch_assoc($buyers_total);
+$zones = "SELECT zone, COUNT(*) as count, SUM(quantity) as qty_sum FROM tickets GROUP BY zone";
+$result_zones = mysqli_query($conn, $zones);
+$zones_data = [];
+$total_percentage = $totalbuyers['total_tickets'];
+
+while ($row = mysqli_fetch_assoc($result_zones)) {
+    $zones_data[] = $row;
+}
+$query_sales = "SELECT t.ticket_id, u.user_name, u.user_email, t.zone, t.section, t.quantity, t.price, t.created_at FROM tickets t JOIN users u ON t.user_id = u.user_id ORDER BY t.created_at DESC";
+$result_sales = mysqli_query($conn, $query_sales);
+$sales_data = [];
+while ($row = mysqli_fetch_assoc($result_sales)) {
+    $sales_data[] = $row;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +89,7 @@
               <p class="stat-label">Total Tickets Sold</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" /><path d="M13 5v2" /><path d="M13 17v2" /><path d="M13 11v2" /></svg>
             </div>
-            <p class="stat-value">10</p>
+            <p class="stat-value"><?php echo $totalbuyers['total_tickets'] ?? 0; ?></p>
           </div>
 
           <div class="stat-card">
@@ -77,7 +97,7 @@
               <p class="stat-label">Total Revenue</p>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-philippine-peso-icon lucide-philippine-peso"><path d="M20 11H4"/><path d="M20 7H4"/><path d="M7 21V4a1 1 0 0 1 1-1h4a1 1 0 0 1 0 12H7"/></svg>
             </div>
-            <p class="stat-value">₱125,000.00</p>
+            <p class="stat-value">₱<?php echo number_format($totalbuyers['total_revenue'] ?? 0, 2); ?></p>
           </div>
 
           <div class="stat-card">
@@ -85,7 +105,7 @@
               <p class="stat-label">Total Buyers</p>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
             </div>
-            <p class="stat-value">4</p>
+            <p class="stat-value"><?php echo $totalbuyers['total_buyers'] ?? 0; ?></p>
           </div>
         </div>
 
@@ -105,74 +125,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach ($zones_data as $zone): 
+                    $percentage = $total_percentage > 0 ? ($zone['qty_sum'] / $total_percentage) * 100 : 0;
+                    $zone_class = 'zone-indicator-' . strtolower(str_replace(' ', '-', $zone['zone']));
+                  ?>
                   <tr>
                     <td>
                       <div class="zone-row">
-                        <span class="zone-indicator zone-indicator-vip"></span>
-                        <span>VIP</span>
+                        <span class="zone-indicator <?php echo $zone_class; ?>"></span>
+                        <span><?php echo htmlspecialchars($zone['zone']); ?></span>
                       </div>
                     </td>
-                    <td class="chart-value">2</td>
+                    <td class="chart-value"><?php echo $zone['qty_sum']; ?></td>
                     <td>
                       <div class="percentage-row">
                         <div class="percentage-bar">
-                          <div class="percentage-fill" style="width: 20%"></div>
+                          <div class="percentage-fill" style="width: <?php echo number_format($percentage, 1); ?>%"></div>
                         </div>
-                        <span class="percentage-text">20.0%</span>
+                        <span class="percentage-text"><?php echo number_format($percentage, 1); ?>%</span>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="zone-row">
-                        <span class="zone-indicator zone-indicator-upper-box"></span>
-                        <span>Upper Box</span>
-                      </div>
-                    </td>
-                    <td class="chart-value">4</td>
-                    <td>
-                      <div class="percentage-row">
-                        <div class="percentage-bar">
-                          <div class="percentage-fill" style="width: 40%"></div>
-                        </div>
-                        <span class="percentage-text">40.0%</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="zone-row">
-                        <span class="zone-indicator zone-indicator-lower-box"></span>
-                        <span>Lower Box</span>
-                      </div>
-                    </td>
-                    <td class="chart-value">3</td>
-                    <td>
-                      <div class="percentage-row">
-                        <div class="percentage-bar">
-                          <div class="percentage-fill" style="width: 30%"></div>
-                        </div>
-                        <span class="percentage-text">30.0%</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="zone-row">
-                        <span class="zone-indicator zone-indicator-general-admission"></span>
-                        <span>General Admission</span>
-                      </div>
-                    </td>
-                    <td class="chart-value">1</td>
-                    <td>
-                      <div class="percentage-row">
-                        <div class="percentage-bar">
-                          <div class="percentage-fill" style="width: 10%"></div>
-                        </div>
-                        <span class="percentage-text">10.0%</span>
-                      </div>
-                    </td>
-                  </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -198,70 +172,29 @@
                 </tr>
               </thead>
               <tbody>
+                <?php foreach ($sales_data as $sale): 
+                  $zone_badge_class = 'zone-' . strtolower(str_replace(' ', '-', $sale['zone']));
+                  $initials = strtoupper(substr($sale['user_name'], 0, 1));
+                  $date = new DateTime($sale['created_at']);
+                  $formatted_date = $date->format('Y-m-d');
+                ?>
                 <tr>
                   <td>
                     <div class="buyer-cell">
-                      <span class="buyer-avatar">M</span>
-                      <span>MamaMo</span>
+                      <span class="buyer-avatar"><?php echo $initials; ?></span>
+                      <span><?php echo htmlspecialchars($sale['user_name']); ?></span>
                     </div>
                   </td>
-                  <td>MamaMo@gmail.com</td>
+                  <td><?php echo htmlspecialchars($sale['user_email']); ?></td>
                   <td>
-                    <span class="zone-badge zone-vip">VIP</span>
+                    <span class="zone-badge <?php echo $zone_badge_class; ?>"><?php echo htmlspecialchars($sale['zone']); ?></span>
                   </td>
-                  <td>101</td>
-                  <td><span class="quantity-badge">2</span></td>
-                  <td class="amount">₱39,000.00</td>
-                  <td>2026-05-10</td>
+                  <td><?php echo htmlspecialchars($sale['section']); ?></td>
+                  <td><span class="quantity-badge"><?php echo $sale['quantity']; ?></span></td>
+                  <td class="amount">₱<?php echo number_format($sale['price'], 2); ?></td>
+                  <td><?php echo $formatted_date; ?></td>
                 </tr>
-                <tr>
-                  <td>
-                    <div class="buyer-cell">
-                      <span class="buyer-avatar">P</span>
-                      <span>PapaMo</span>
-                    </div>
-                  </td>
-                  <td>PapaMo@gmail.com</td>
-                  <td>
-                    <span class="zone-badge zone-upper-box">Upper Box</span>
-                  </td>
-                  <td>202</td>
-                  <td><span class="quantity-badge">4</span></td>
-                  <td class="amount">₱56,000.00</td>
-                  <td>2026-05-09</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="buyer-cell">
-                      <span class="buyer-avatar">K</span>
-                      <span>KuyaMo</span>
-                    </div>
-                  </td>
-                  <td>KuyaMo@gmail.com</td>
-                  <td>
-                    <span class="zone-badge zone-lower-box">Lower Box</span>
-                  </td>
-                  <td>403</td>
-                  <td><span class="quantity-badge">3</span></td>
-                  <td class="amount">₱27,000.00</td>
-                  <td>2026-05-08</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="buyer-cell">
-                      <span class="buyer-avatar">A</span>
-                      <span>AteMo</span>
-                    </div>
-                  </td>
-                  <td>AteMo@gmail.com</td>
-                  <td>
-                    <span class="zone-badge zone-general-admission">General Admission</span>
-                  </td>
-                  <td>GenAdm</td>
-                  <td><span class="quantity-badge">1</span></td>
-                  <td class="amount">₱3,000.00</td>
-                  <td>2026-05-07</td>
-                </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>
