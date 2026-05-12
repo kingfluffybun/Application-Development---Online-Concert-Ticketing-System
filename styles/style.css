@@ -185,13 +185,19 @@ hero {
     background-color: #f8a5becc;
     color: white;
     .icon {
-        height: 32px; width: 32px;
+        height: 32px;
+        width: 32px;
         border-radius: 50%;
         background-color: white;
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+        transition: 250ms all ease;
+        
         svg {color: var(--primary-color); fill: var(--primary-color);}
+    } .icon:hover {
+        transform: scale(1.125);
     }
 }
 
