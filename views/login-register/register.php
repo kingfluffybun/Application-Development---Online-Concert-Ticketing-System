@@ -12,7 +12,8 @@ session_start();
 include '../../db/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
@@ -22,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Passwords do not match.";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password, role) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $username, $email, $hashed_password, $role);
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, user_password, role) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $firstname, $lastname, $email, $hashed_password, $role);
         if ($stmt->execute()) {
             header("Location: login.php");
             exit();
@@ -48,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <form class="auth-form" action="#" method="post" autocomplete="off">
         <div style="display:flex; gap:12px;">
             <div class="form-group">
-                <input id="register-username" name="firstname" type="text" placeholder=" " autocomplete="firstname">
-                <label for="register-username">First Name</label>
+                <input id="register-firstname" name="firstname" type="text" placeholder=" " autocomplete="firstname">
+                <label for="register-firstname">First Name</label>
                 </div>
             <div class="form-group">
-                <input id="register-username" name="lastname" type="text" placeholder=" " autocomplete="lastname">
-                <label for="register-username">Last Name</label>
+                <input id="register-lastname" name="lastname" type="text" placeholder=" " autocomplete="lastname">
+                <label for="register-lastname">Last Name</label>
             </div>
         </div>
 
