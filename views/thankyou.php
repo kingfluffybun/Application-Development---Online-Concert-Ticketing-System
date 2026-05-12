@@ -118,6 +118,10 @@
                 <div class="payment-details">
                     <h2 style="text-align: left; margin-bottom: 8px;">Order Details</h2>
                     <div class="payment-details-content">
+                        <p>Buyer Name</p>
+                        <p>Clarence Jerald Luna</p>
+                    </div>
+                    <div class="payment-details-content">
                         <p>Date</p>
                         <p><?php echo htmlspecialchars($formattedDate); ?></p>
                     </div>
@@ -130,10 +134,12 @@
                         <p><?php echo $zoneDisplay; ?></p>
                     </div>
                     <div class="payment-details-content">
-                        <div>
-                            <p>Section</p>
-                        </div>
+                        <p>Section</p>
                         <p><?php echo $sectionDisplay; ?></p>
+                    </div>
+                    <div class="payment-details-content">
+                        <p>Transaction Number</p>
+                        <p>#<?php echo $transacNoDisplay; ?></p>
                     </div>
                     <div class="payment-details-content">
                         <p>Status</p>
@@ -150,11 +156,17 @@
                         <p>₱<?php echo $totalAmountDisplay; ?></p>
                     </div>
                 </div>
-                <a href="/views/" style="width: 100%;">
-                    <div class="proceed">
-                        <h1>Continue Exploring</h1>
-                    </div>
-                </a>
+                <div class="payment-action">
+                    <button class="proceed" style="gap: 8px; align-items: center;">
+                        <h1>View Ticket</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                    </button>
+                    <a href="/views/" style="width: 100%; height: 100%;">
+                        <div class="proceed">
+                            <h1>Continue Exploring</h1>
+                        </div>
+                    </a>
+                </div>
             </div>
 
     </section>

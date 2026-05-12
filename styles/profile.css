@@ -10,6 +10,11 @@
     animation-duration: 0.4s;
 }
 
+@font-face {
+    font-family: 'Inter';
+    src: url(/assets/fonts/InterVariable.ttf);
+}
+
 body {
   margin: 0;
   padding: 0;

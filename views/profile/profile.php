@@ -173,7 +173,7 @@ if (isset($_SESSION['user_id'])) {
 
     <main class="profile-main">
 
-      <div class="profile-page-heading">
+      <!-- <div class="profile-page-heading">
         <div class="profile-hero-card">
           <div>
             <p class="profile-tag">Profile</p>
@@ -181,7 +181,7 @@ if (isset($_SESSION['user_id'])) {
             <p class="profile-subtitle">Update your username or password, and review your ticket purchases on a clean profile screen.</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <nav class="profile-tabs" style="display: none;">
         <a href="#manage-profile" class="profile-tab profile-tab--active">Manage Profile</a>

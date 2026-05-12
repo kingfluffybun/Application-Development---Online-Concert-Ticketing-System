@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <form class="auth-form" action="#" method="post" autocomplete="off">
         <div class="form-group">
           <input id="login-identifier" name="identifier" type="text" placeholder=" " autocomplete="username">
-          <label for="login-identifier">Username or email</label>
+          <label for="login-identifier">Email</label>
         </div>
 
         <div class="form-group password-group">

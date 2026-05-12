@@ -67,19 +67,19 @@ while ($row = mysqli_fetch_assoc($result_sales)) {
     </aside>
 
     <main class="admin-main">
-      <div class="admin-page-heading" id="admin-page-heading">
-        <div class="admin-hero-card">
-          <div>
-            <p class="admin-tag">Admin Dashboard</p>
-            <h1>Sales Overview</h1>
-            <p class="admin-subtitle">Monitor ticket sales, revenue, and buyer analytics in real-time.</p>
-          </div>
-        </div>
-      </div>
+        <!-- <div class="admin-page-heading" id="admin-page-heading">
+            <div class="admin-hero-card">
+            <div>
+                <p class="admin-tag">Admin Dashboard</p>
+                <h1>Sales Overview</h1>
+                <p class="admin-subtitle">Monitor ticket sales, revenue, and buyer analytics in real-time.</p>
+            </div>
+            </div>
+        </div> -->
 
       <section class="admin-section active" id="dashboard">
         <div class="section-header">
-          <h1>Dashboard Overview</h1>
+          <h1>Sales Overview</h1>
           <p>Real-time statistics and ticket sales data.</p>
         </div>
 

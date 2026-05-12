@@ -46,7 +46,7 @@ input::-webkit-inner-spin-button {
 p, h1, h2 {font-family: Inter;}
 h1 {text-transform: uppercase; font-weight: 900; letter-spacing: 3px;}
 button {outline: none;}
-a {text-decoration: none;}
+a {text-decoration: none; -webkit-user-drag: none; outline: none;}
 
 p, a, h1, h2 {user-select: none;}
 
@@ -718,4 +718,15 @@ section {
     p:first-child {
         color: rgba(255, 255, 255, 0.5);
     }
+}
+
+.payment-action {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    width: 100%;
+    gap: 12px;
+    a, button {flex: 1;}
+    a .proceed, button {min-height: 48px;}
+    button {border: none; outline: none;}
+    .proceed h1 {font-size: 16px; letter-spacing: 0;}
 }

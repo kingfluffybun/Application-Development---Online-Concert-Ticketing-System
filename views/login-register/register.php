@@ -39,9 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </header>
 
       <form class="auth-form" action="#" method="post" autocomplete="off">
-        <div class="form-group">
-          <input id="register-username" name="username" type="text" placeholder=" " autocomplete="username">
-          <label for="register-username">Username</label>
+        <div style="display:flex; gap:12px;">
+            <div class="form-group">
+                <input id="register-username" name="firstname" type="text" placeholder=" " autocomplete="firstname">
+                <label for="register-username">First Name</label>
+                </div>
+            <div class="form-group">
+                <input id="register-username" name="lastname" type="text" placeholder=" " autocomplete="lastname">
+                <label for="register-username">Last Name</label>
+            </div>
         </div>
 
         <div class="form-group">
