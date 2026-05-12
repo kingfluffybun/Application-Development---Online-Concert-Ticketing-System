@@ -313,9 +313,15 @@ if (isset($_SESSION['user_id'])) {
                 <label for="new-email">New Email</label>
                 <input type="email" id="new-email" name="new_email" placeholder="Enter new email" required />
               </div>
-              <div class="input-group">
+              <div class="input-group password-group">
                 <label for="confirm-email-password">Confirm with Password</label>
-                <input type="password" id="confirm-email-password" name="confirm_password_email" placeholder="Enter your password" required />
+                <div class="input-wrapper">
+                  <input type="password" id="confirm-email-password" name="confirm_password_email" placeholder="Enter your password" required />
+                  <span class="toggle-password" data-target="confirm-email-password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                  </span>
+                </div>
               </div>
             </div>
             <div class="profile-card-footer">
@@ -340,17 +346,35 @@ if (isset($_SESSION['user_id'])) {
               <p>Password</p>
             </div>
             <div class="profile-card-body">
-              <div class="input-group">
+              <div class="input-group password-group">
                 <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="current_password" placeholder="Enter current password" required />
+                <div class="input-wrapper">
+                  <input type="password" id="current-password" name="current_password" placeholder="Enter current password" required />
+                  <span class="toggle-password" data-target="current-password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                  </span>
+                </div>
               </div>
-              <div class="input-group">
+              <div class="input-group password-group">
                 <label for="new-password">New Password</label>
-                <input type="password" id="new-password" name="new_password" placeholder="Enter new password" required />
+                <div class="input-wrapper">
+                  <input type="password" id="new-password" name="new_password" placeholder="Enter new password" required />
+                  <span class="toggle-password" data-target="new-password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                  </span>
+                </div>
               </div>
-              <div class="input-group">
+              <div class="input-group password-group">
                 <label for="confirm-password">Confirm New Password</label>
-                <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password" required />
+                <div class="input-wrapper">
+                  <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter new password" required />
+                  <span class="toggle-password" data-target="confirm-password">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                  </span>
+                </div>
               </div>
             </div>
             <div class="profile-card-footer">
@@ -508,6 +532,40 @@ if (isset($_SESSION['user_id'])) {
         if (confirm('Are you sure you want to logout?')) {
           window.location.href = '/views/login-register/logout.php';
         }
+      });
+
+      // Toggle password visibility
+      document.querySelectorAll('.toggle-password').forEach(toggle => {
+        toggle.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+        });
+
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          const inputId = toggle.getAttribute('data-target');
+          const input = document.getElementById(inputId);
+
+          if (!input) return;
+
+          const eye = toggle.querySelector('.eye-icon');
+          const eyeOff = toggle.querySelector('.eye-off-icon');
+
+          const cursorPosition = input.selectionStart;
+          const selectionStart = input.selectionStart;
+          const selectionEnd = input.selectionEnd;
+
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+
+          eye.classList.toggle('hidden', isPassword);
+          eyeOff.classList.toggle('hidden', !isPassword);
+
+          setTimeout(() => {
+            input.setSelectionRange(selectionStart, selectionEnd);
+            input.focus();
+          }, 0);
+        });
       });
     });
   </script>

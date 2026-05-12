@@ -381,12 +381,30 @@ body {
   color: rgba(138,107,124,0.6);
 }
 
-.input-wrapper {
+.password-group {
   position: relative;
 }
 
+.password-group input {
+  padding-right: 48px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .input-wrapper input {
-  padding-right: 44px;
+  width: 100%;
+  padding-right: 52px;
+}
+
+.input-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .toggle-pw {
@@ -411,6 +429,74 @@ body {
 .toggle-pw svg {
   width: 16px;
   height: 16px;
+}
+
+.password-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.password-group input {
+  padding-right: 48px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  pointer-events: auto;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  margin: 0;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.toggle-password:hover {
+  background-color: rgba(244,184,206,0.15);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.toggle-password:active {
+  background-color: rgba(244,184,206,0.3);
+  transform: translateY(-50%) scale(0.95);
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+  stroke: #a89aa8;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+  pointer-events: none;
+  flex-shrink: 0;
+  display: block;
+}
+
+.toggle-password:hover svg {
+  stroke: #F4679D;
+}
+
+.toggle-password:active svg {
+  stroke: #FF0066;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .input-display {
