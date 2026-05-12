@@ -21,7 +21,7 @@ session_start();
             <div class="hero-nav">
                 <a href="#ticket" class="a-text"><p>Tickets</p></a>
                 <!-- <a class="a-text"><p>Schedule</p></a> -->
-                <a href="#artist" class="a-text"><p>Artists</p></a>
+                <a href="#members" class="a-text"><p>Members</p></a>
                 <a class="a-text"><p>FAQ</p></a>
                 <?php if (!isset($_SESSION['user_name'])): ?>
                     <a href='/views/login-register/login.php' class='a-text'><p>Login</p></a>
@@ -201,7 +201,7 @@ session_start();
             </div>
         </div>
     </section>
-    <section class="artist-section" id="artist">
+    <section class="artist-section" id="members">
         <div class="artist-container">
             <div><img src="/assets/images/rose.jpg"></div>
             <div><img src="/assets/images/lisa.jpg"></div>
@@ -235,17 +235,17 @@ session_start();
                 <div>
                     <a href="#home"><p>Home</p></a>
                     <a href="#ticket"><p>Tickets</p></a>
-                    <a href="#artist"><p>Members</p></a>
+                    <a href="#members"><p>Members</p></a>
                     <a href="#faq"><p>FAQ</p></a>
                 </div>
             </div>
             <div class="footer-column">
                 <p class="footer-header">ACCOUNT</p>
                 <div>
-                    <a href="#home"><p>Login</p></a>
-                    <a href="#ticket"><p>Register</p></a>
-                    <a href="#artist"><p>View Tickets</p></a>
-                    <a href="#faq"><p>Manage Profile</p></a>
+                    <a href="/views/login-register/login.php"><p>Login</p></a>
+                    <a href="/views/login-register/register.php"><p>Register</p></a>
+                    <a href="/views/profile/profile.php"><p>View Tickets</p></a>
+                    <a href="/views/profile/profile.php"><p>Manage Profile</p></a>
                 </div>
             </div>
             <div class="footer-column">

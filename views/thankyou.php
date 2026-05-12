@@ -194,19 +194,19 @@
             <div class="footer-column">
                 <p class="footer-header">NAVIGATE</p>
                 <div>
-                    <a href="#home"><p>Home</p></a>
-                    <a href="#ticket"><p>Tickets</p></a>
-                    <a href="#artist"><p>Members</p></a>
-                    <a href="#faq"><p>FAQ</p></a>
+                    <a href="/views/index.php#home"><p>Home</p></a>
+                    <a href="/views/index.php#ticket"><p>Tickets</p></a>
+                    <a href="/views/index.php#members"><p>Members</p></a>
+                    <a href="/views/index.php#faq"><p>FAQ</p></a>
                 </div>
             </div>
             <div class="footer-column">
                 <p class="footer-header">ACCOUNT</p>
                 <div>
-                    <a href="#home"><p>Login</p></a>
-                    <a href="#ticket"><p>Register</p></a>
-                    <a href="#artist"><p>View Tickets</p></a>
-                    <a href="#faq"><p>Manage Profile</p></a>
+                    <a href="/views/login-register/login.php"><p>Login</p></a>
+                    <a href="/views/login-register/register.php"><p>Register</p></a>
+                    <a href="/views/profile/profile.php"><p>View Tickets</p></a>
+                    <a href="/views/profile/profile.php"><p>Manage Profile</p></a>
                 </div>
             </div>
             <div class="footer-column">
