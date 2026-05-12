@@ -73,6 +73,17 @@
         $formattedDate = $createdAt->format('F j, Y');
         $formattedTime = $createdAt->format('g:i A');
     }
+
+    // Map zone → ticket image filename
+    $ticketImageMap = [
+        'Gen Adm'   => '1.png',
+        'Upper Box' => '2.png',
+        'Lower Box' => '3.png',
+        'VIP'       => '4.png',
+    ];
+    $rawZone = $ticket['zone'] ?? '';
+    $ticketImage = '/assets/tickets/' . ($ticketImageMap[$rawZone] ?? '1.png');
+    $ticketFilename = 'Blackpink-ticket.png';
     ?>
     <section class="ticket-form-section" style="display: flex; flex-direction: column;">
         <a href="index.php">
@@ -158,10 +169,12 @@
                     </div>
                 </div>
                 <div class="payment-action">
-                    <button class="proceed" style="gap: 8px; align-items: center;">
-                        <h1>View Ticket</h1>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
-                    </button>
+                    <a href="<?= htmlspecialchars($ticketImage) ?>" download="<?= htmlspecialchars($ticketFilename) ?>" style="width: 100%; height: 100%;">
+                        <div class="proceed" style="gap: 8px; align-items: center;">
+                            <h1>Download Ticket</h1>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                        </div>
+                    </a>
                     <a href="/views/" style="width: 100%; height: 100%;">
                         <div class="proceed">
                             <h1>Continue Exploring</h1>

@@ -1,3 +1,103 @@
+<?php
+session_start();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Require login
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login-register/login.php");
+        exit();
+    }
+
+    $zone     = $_POST['zone']     ?? '';
+    $section  = $_POST['section']  ?? '';
+    $quantity = (int)($_POST['quantity'] ?? 1);
+
+    if (empty($zone) || empty($section)) {
+        header("Location: seats.php?error=seat");
+        exit();
+    }
+
+    // Generate 8-digit OTP and store in session
+    $code = str_pad(random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
+    $_SESSION['otp_code']    = $code;
+    $_SESSION['otp_zone']    = $zone;
+    $_SESSION['otp_section'] = $section;
+    $_SESSION['otp_qty']     = $quantity;
+
+    // Fetch user email from DB
+    require_once __DIR__ . '/../db/db.php';
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT first_name, user_email FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($first_name, $user_email);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Send OTP via PHPMailer
+    require_once __DIR__ . '/../vendor/autoload.php';
+
+    $mail = new PHPMailer(true);
+    try {
+        // --- SMTP Settings (update with your credentials) ---
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'blackpinkticketph@gmail.com';   // ← change this
+        $mail->Password   = 'emasksmuzryrpsrn';       // ← change this (Gmail App Password)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        // Recipients
+        $mail->setFrom('blackpinkticketph@gmail.com', 'BLACKPINK Ticket');
+        $mail->addAddress($user_email);
+
+        // Format the code with a dash in the middle: 1234-5678
+        $formatted = substr($code, 0, 4) . '-' . substr($code, 4, 4);
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Your Transaction Code - BLACKPINK Born Pink World Tour 2026';
+        $mail->Body    = "
+            <div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#0d0010;color:#fff;border-radius:12px;overflow:hidden;'>
+                <div style='background:linear-gradient(135deg,#c0005a,#ff0066);padding:32px 32px 24px;text-align:center;'>
+                    <h1 style='margin:0;font-size:28px;letter-spacing:2px;'>BLACKPINK</h1>
+                    <p style='margin:4px 0 0;font-size:13px;opacity:0.85;'>BORN PINK WORLD TOUR 2026</p>
+                </div>
+                <div style='padding:32px;'>
+                    <p style='margin:0 0 8px;'>Hi <strong>{$first_name}</strong>,</p>
+                    <p style='margin:0 0 24px;color:rgba(255,255,255,0.7);'>Here is your 8-digit transaction reference code. Enter it on the payment page to complete your ticket purchase.</p>
+                    <div style='background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:24px;text-align:center;'>
+                        <p style='margin:0 0 8px;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;'>Transaction Code</p>
+                        <h2 style='margin:0;font-size:42px;letter-spacing:10px;color:#ff0066;font-family:monospace;'>{$formatted}</h2>
+                    </div>
+                    <p style='margin:24px 0 0;font-size:12px;color:rgba(255,255,255,0.4);text-align:center;'>This code is valid for this session only. Do not share it with anyone.</p>
+                </div>
+                <div style='padding:16px 32px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;font-size:11px;color:rgba(255,255,255,0.3);'>
+                    Smart Araneta Coliseum, Quezon City &middot; August 15, 2026
+                </div>
+            </div>
+        ";
+        $mail->AltBody = "Hi {$first_name}, your transaction code is: {$code}. Enter it on the payment page to complete your purchase.";
+
+        $mail->send();
+        $_SESSION['otp_sent'] = true;
+        $_SESSION['otp_email'] = $user_email;
+    } catch (Exception $e) {
+        // Mail failed – still redirect but flag the error
+        $_SESSION['otp_sent']  = false;
+        $_SESSION['mail_error'] = $mail->ErrorInfo;
+    }
+
+    // Redirect to payment page (no POST data needed – everything is in session)
+    header("Location: payment.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +113,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
         <p>Back to Home</p>
     </a>
-    <form class="ticket-form" action="payment.php" method="post">
+    <form class="ticket-form" action="seats.php" method="post">
         <input type="hidden" id="hidden-zone" name="zone">
         <input type="hidden" id="hidden-section" name="section">
         <input type="hidden" id="hidden-quantity" name="quantity">
