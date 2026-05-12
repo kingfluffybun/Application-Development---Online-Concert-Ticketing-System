@@ -11,7 +11,7 @@ $total_percentage = $totalbuyers['total_tickets'];
 while ($row = mysqli_fetch_assoc($result_zones)) {
     $zones_data[] = $row;
 }
-$query_sales = "SELECT t.ticket_id, u.user_name, u.user_email, t.zone, t.section, t.quantity, t.price, t.created_at FROM tickets t JOIN users u ON t.user_id = u.user_id ORDER BY t.created_at DESC";
+$query_sales = "SELECT t.ticket_id, u.first_name, u.last_name, u.user_email, t.zone, t.section, t.quantity, t.price, t.created_at FROM tickets t JOIN users u ON t.user_id = u.user_id ORDER BY t.created_at DESC";
 $result_sales = mysqli_query($conn, $query_sales);
 $sales_data = [];
 while ($row = mysqli_fetch_assoc($result_sales)) {
@@ -59,7 +59,7 @@ while ($row = mysqli_fetch_assoc($result_sales)) {
           <span class="sidenav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg></span>
           <span>Home</span>
         </a>
-        <a href="/views/login-register/login.php" class="sidenav-item logout-btn" title="Logout">
+        <a href="/views/login-register/logout.php" class="sidenav-item logout-btn" title="Logout">
           <span class="sidenav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg></span>
           <span>Log Out</span>
         </a>
@@ -174,7 +174,8 @@ while ($row = mysqli_fetch_assoc($result_sales)) {
               <tbody>
                 <?php foreach ($sales_data as $sale): 
                   $zone_badge_class = 'zone-' . strtolower(str_replace(' ', '-', $sale['zone']));
-                  $initials = strtoupper(substr($sale['user_name'], 0, 1));
+                  $full_name = ($sale['first_name'] ?? '') . ' ' . ($sale['last_name'] ?? '');
+                  $initials = strtoupper(substr($sale['first_name'] ?? 'U', 0, 1));
                   $date = new DateTime($sale['created_at']);
                   $formatted_date = $date->format('Y-m-d');
                 ?>
@@ -182,7 +183,7 @@ while ($row = mysqli_fetch_assoc($result_sales)) {
                   <td>
                     <div class="buyer-cell">
                       <span class="buyer-avatar"><?php echo $initials; ?></span>
-                      <span><?php echo htmlspecialchars($sale['user_name']); ?></span>
+                      <span><?php echo htmlspecialchars($full_name); ?></span>
                     </div>
                   </td>
                   <td><?php echo htmlspecialchars($sale['user_email']); ?></td>
