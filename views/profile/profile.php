@@ -32,18 +32,20 @@ function getTicketCardClass($zone)
   }
 }
 
-if (isset($_SESSION['user_name'])) {
-  $check = $conn->prepare("SELECT * FROM users WHERE user_name = ?");
-  $check->bind_param("s", $_SESSION['user_name']);
+if (isset($_SESSION['user_email'])) {
+  $check = $conn->prepare("SELECT * FROM users WHERE user_email = ?");
+  $check->bind_param("s", $_SESSION['user_email']);
   $check->execute();
   $result = $check->get_result();
 
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $_SESSION['user_email'] = $row['user_email'];
+    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['first_name'] = $row['first_name'];
+    $_SESSION['last_name'] = $row['last_name'];
     $_SESSION['created_at'] = new DateTime($row['created_at']);
   } else {
-    $_SESSION['user_email'] = "aaaaaa";
+    $_SESSION['user_email'] = "unknown";
     $_SESSION['created_at'] = "Unknown";
   }
 }
@@ -105,12 +107,12 @@ if (isset($_SESSION['user_id'])) {
     <aside class="profile-sidebar">
       <div class="profile-avatar-block">
         <div class="profile-avatar">
-          <span class="avatar-initials"><?= getInitials($_SESSION['user_name'] ?? 'Guest') ?></span>
+          <span class="avatar-initials"><?= getInitials(($_SESSION['first_name'] ?? 'Guest') . ' ' . ($_SESSION['last_name'] ?? '')) ?></span>
           <div class="avatar-ring"></div>
         </div>
         <div class="profile-meta">
-          <?php if (isset($_SESSION['user_name'])): ?>
-            <p class="profile-username"><?= htmlspecialchars($_SESSION['user_name']); ?></p>
+          <?php if (isset($_SESSION['user_email'])): ?>
+            <p class="profile-username"><?= htmlspecialchars(($_SESSION['first_name'] ?? '') . ' ' . ($_SESSION['last_name'] ?? '')); ?></p>
           <?php else: ?>
             <p class="profile-username">Guest</p>
           <?php endif; ?>
@@ -207,7 +209,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="profile-card-body">
               <div class="input-group">
                 <label>Current Username</label>
-                <div class="input-display"><span><?php echo htmlspecialchars($_SESSION['user_name']); ?></span></div>
+                <div class="input-display"><span><?php echo htmlspecialchars(($_SESSION['first_name'] ?? '') . ' ' . ($_SESSION['last_name'] ?? '')); ?></span></div>
               </div>
               <div class="input-group">
                 <label for="new-username">New Username</label>
@@ -406,7 +408,7 @@ if (isset($_SESSION['user_id'])) {
       logoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
         if (confirm('Are you sure you want to logout?')) {
-          window.location.href = '/views/index.php';
+          window.location.href = '/views/login-register/logout.php';
         }
       });
     });
