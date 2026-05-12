@@ -88,7 +88,8 @@ hero {
     justify-content: center;
     border: 8px black solid;
     background-color: var(--primary-color);
-    width: 400px;
+    max-width: 400px;
+    padding: 0 16px;
     h1 {font-size: 44px; font-family: Inter; font-weight: 900; letter-spacing: 3px;}
 }
 
@@ -400,7 +401,7 @@ section {
   background-image: url(/assets/images/hero-banner-bg.jpg);
   background-size: cover;
   filter: blur(4px);
-  z-index: -1; /* Places the image behind the content */
+  z-index: -1;
 }
 
 .artist-container {
@@ -421,6 +422,64 @@ section {
             transform: scale(1.025);
         }
     }
+}
+
+footer {
+    height: auto;
+    background-color: #111111;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 4vh 12vh;
+    color: rgba(255, 255, 255, 0.5);
+    a {color: rgba(255, 255, 255, 0.5); width: fit-content; text-wrap: nowrap; display: flex;}
+    a:hover {text-decoration: underline;}
+    p {line-height: 2;}
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        padding: 0 16px;
+    } .footer-column:first-child {
+        padding-left: 0;
+    } div:last-child {
+        p {text-wrap: nowrap;}
+    }
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: rgba(255, 255, 255, 0.2) 1px solid; 
+    padding: 2vh 12vh;
+    p {color: rgba(255, 255, 255, 0.2);}
+}
+
+.footer-header {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px; 
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.social-icon {
+    border-radius: 50px;
+    padding: 12px;
+    background-color: transparent;
+    border: rgba(255, 255, 255, 0.5) 2px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.social-icon svg {
+    color: var(--primary-color);
 }
 
 /* seats.html */
