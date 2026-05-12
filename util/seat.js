@@ -187,8 +187,10 @@ const showSection = (showSectionElement, hideSectionElement) => {
   hideSectionElement.style.display = 'none';
 };
 
-proceedButton.addEventListener('click', () => {
+proceedButton.addEventListener('click', (e) => {
   if (!selectedZone || !selectedSection) {
+    e.preventDefault();
+    alert('Please select a seat zone before continuing to payment.');
     return;
   }
 
@@ -196,5 +198,8 @@ proceedButton.addEventListener('click', () => {
   document.getElementById('hidden-section').value = selectedSection;
   document.getElementById('hidden-quantity').value = quantity;
 
-  showSection(paymentSection, ticketFormSection);
+  if (paymentSection && ticketFormSection) {
+    e.preventDefault();
+    showSection(paymentSection, ticketFormSection);
+  }
 });
